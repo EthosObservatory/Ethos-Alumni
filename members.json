@@ -8,7 +8,7 @@
     "LUISS Guido Carli University"
   ],
       "location": "Rome, Italy",
-      "areas": [
+      "expertise": [
         "Political Philosophy",
         "Digital Ethics",
         "Business Ethics"
@@ -25,11 +25,13 @@
     "Sciences Po Bordeaux"
   ],
       "location": "Rome, Italy",
-      "areas": [
+      "expertise": [
         "International Relations",
         "Political Philosophy",
+        "Artificial Intelligence"
+      ],
+      "interests": [
         "Multiculturalism & Migration",
-        "Artificial Intelligence",
         "Globalisation",
         "Religion & Theology"
       ],
@@ -45,10 +47,12 @@
     "Sciences Po Bordeaux"
   ],
       "location": "Rome, Italy",
-      "areas": [
+      "expertise": [
         "International Relations",
         "Artificial Intelligence",
         "Economic Intelligence",
+      ],
+      "interests": [
         "Political Philosophy",
         "Globalisation",
         "Digital Ethics"
