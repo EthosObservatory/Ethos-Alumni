@@ -12,40 +12,80 @@ function renderCards(list) {
     const el = document.createElement('div');
     el.className = 'card';
 
-    // Gestiamo affiliazioni multiple:
+    // Affiliazioni multiple o singola
     const allAffiliations = (m.affiliations && m.affiliations.length > 0)
       ? m.affiliations
       : (m.affiliation ? [m.affiliation] : []);
 
     const affiliationsText = allAffiliations.join(' • ');
 
+    // Expertise & Interests, con fallback sul vecchio "areas"
+    let expertise = m.expertise || [];
+    let interests = m.interests || [];
+
+    if (expertise.length === 0 && interests.length === 0 && m.areas && m.areas.length > 0) {
+      // Se il profilo è ancora vecchio stile, trattiamo "areas" come "interests"
+      interests = m.areas;
+    }
+
+    const expertiseBadges = (expertise || []).map(a => `<span class="badge">${a}</span>`).join('');
+    const interestsBadges = (interests || []).map(a => `<span class="badge">${a}</span>`).join('');
+
+    let badgesHtml = '';
+    if (expertiseBadges) {
+      badgesHtml += `<div class="badge-group"><span class="badge-label">Expertise</span>${expertiseBadges}</div>`;
+    }
+    if (interestsBadges) {
+      badgesHtml += `<div class="badge-group"><span class="badge-label">Interests</span>${interestsBadges}</div>`;
+    }
+
+    // Contatti (LinkedIn + email, eventualmente estendibili)
+    let contactsHtml = '';
+    if (m.linkedin) {
+      contactsHtml += `<a href="${m.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
+    }
+    if (m.email) {
+      contactsHtml += `${contactsHtml ? ' • ' : ''}<a href="mailto:${m.email}">Email</a>`;
+    }
+
     el.innerHTML = `
       <h3>${m.name}</h3>
       <p><strong>${m.role || ''}</strong>${affiliationsText ? ' • ' + affiliationsText : ''}</p>
       <p>${m.location || ''}</p>
       <div class="badges">
-        ${(m.areas || []).map(a => `<span class="badge">${a}</span>`).join('')}
+        ${badgesHtml}
       </div>
-      <p>
-        ${m.linkedin ? `<a href="${m.linkedin}" target="_blank" rel="noopener">LinkedIn</a>` : ''}
-        ${m.email ? `${m.linkedin ? ' • ' : ''}<a href="mailto:${m.email}">Email</a>` : ''}
-      </p>
+      <p>${contactsHtml}</p>
     `;
 
     cards.appendChild(el);
   });
 }
 
-
 function applyFilters(members) {
   const q = document.getElementById('search').value.toLowerCase().trim();
   const area = document.getElementById('areaFilter').value;
-  let filtered = members.filter(m => {
-    const hay = [m.name, m.role, m.affiliation, ...(m.areas||[])].join(' ').toLowerCase();
-    const okQ = !q || hay.includes(q);
-    const okA = !area || (m.areas||[]).includes(area);
+
+  const filtered = members.filter(m => {
+    const expertise = m.expertise || [];
+    const interests = m.interests || [];
+    const legacyAreas = m.areas || [];
+
+    const allAreas = [...expertise, ...interests, ...legacyAreas];
+
+    const haystack = [
+      m.name || '',
+      m.role || '',
+      m.affiliation || '',
+      ...allAreas
+    ].join(' ').toLowerCase();
+
+    const okQ = !q || haystack.includes(q);
+    const okA = !area || allAreas.includes(area);
+
     return okQ && okA;
   });
+
   renderCards(filtered);
 }
 
