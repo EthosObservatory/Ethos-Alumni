@@ -10,13 +10,25 @@
         "LUISS Guido Carli University"
       ],
       "location": "Rome, Italy",
+
+      "degrees": [],
+
       "expertise": [
         "Political Philosophy",
         "Digital Ethics",
         "Business Ethics"
       ],
-      "linkedin": "https://www.linkedin.com/in/sebastiano-maffettone-12268a1a0/",
-      "email": "maffettone@gmail.com"
+      "interests": [],
+
+      "emails": ["maffettone@gmail.com"],
+      "phones": [],
+
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/sebastiano-maffettone-12268a1a0/"
+      ],
+
+      "links": [],
+      "works": []
     },
 
     {
@@ -30,6 +42,9 @@
         "Università Vita - Salute San Raffaele"
       ],
       "location": "Rome, Italy",
+
+      "degrees": [],
+
       "expertise": [
         "Political Philosophy",
         "Digital Ethics",
@@ -40,8 +55,16 @@
         "Information Ethics",
         "Food and Agriculture Ethics"
       ],
-      "linkedin": "https://www.linkedin.com/in/camilla-dacrema-957a89ba/",
-      "email": "cdacrema@luiss.it"
+
+      "emails": ["cdacrema@luiss.it"],
+      "phones": [],
+
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/camilla-dacrema-957a89ba/"
+      ],
+
+      "links": [],
+      "works": []
     },
 
     {
@@ -56,6 +79,9 @@
         "Sciences Po Bordeaux"
       ],
       "location": "Rome, Italy",
+
+      "degrees": [],
+
       "expertise": [
         "International Relations",
         "Political Philosophy",
@@ -69,8 +95,16 @@
         "Religion & Theology",
         "Arts & Cultural Ethics"
       ],
-      "linkedin": "https://www.linkedin.com/in/roberto-sforza-ab112526b/",
-      "email": "roberto.o.l.sforza@gmail.com"
+
+      "emails": ["roberto.o.l.sforza@gmail.com"],
+      "phones": [],
+
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/roberto-sforza-ab112526b/"
+      ],
+
+      "links": [],
+      "works": []
     },
 
     {
@@ -85,6 +119,9 @@
         "Sciences Po Bordeaux"
       ],
       "location": "Rome, Italy",
+
+      "degrees": [],
+
       "expertise": [
         "International Relations",
         "Artificial Intelligence",
@@ -95,8 +132,16 @@
         "Globalisation",
         "Digital Ethics"
       ],
-      "linkedin": "https://www.linkedin.com/in/alessandro-bruneau-48220b294/",
-      "email": "alessandro.bruneau@gmail.com"
+
+      "emails": ["alessandro.bruneau@gmail.com"],
+      "phones": [],
+
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/alessandro-bruneau-48220b294/"
+      ],
+
+      "links": [],
+      "works": []
     }
   ]
 }
