@@ -1,0 +1,60 @@
+{
+  "name": "Name Surname",
+
+  "roles": [
+    "Role 1",
+    "Role 2"
+  ],
+
+  "affiliations": [
+    "Affiliation 1",
+    "Affiliation 2"
+  ],
+
+  "location": "City, Country",
+
+  "education": [
+    "Degree 1 – Institution 1",
+    "Degree 2 – Institution 2"
+  ],
+
+  "expertise": [
+    "Expertise Area 1",
+    "Expertise Area 2"
+  ],
+
+  "interests": [
+    "Interest Area 1",
+    "Interest Area 2"
+  ],
+
+  "emails": [
+    "name.surname@example.com"
+  ],
+
+  "phones": [
+    "+00 000 000 0000"
+  ],
+
+  "linkedin_profiles": [
+    "https://www.linkedin.com/in/namesurname"
+  ],
+
+  "links": [
+    {
+      "label": "Website",
+      "url": "https://www.example.com",
+      "note": "Optional description"
+    }
+  ],
+
+  "works": [
+    {
+      "title": "Work Title 1",
+      "type": "Work Type",
+      "year": "2024",
+      "link": "",
+      "note": "Optional note about the work"
+    }
+  ]
+}
