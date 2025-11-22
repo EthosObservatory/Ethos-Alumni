@@ -19,6 +19,15 @@ function renderCards(list) {
 
     const affiliationsText = allAffiliations.join(' • ');
 
+    // Ruoli multipli o singolo
+    let roles = [];
+    if (m.roles && Array.isArray(m.roles) && m.roles.length > 0) {
+      roles = m.roles;
+    } else if (m.role) {
+      roles = [m.role]; // fallback per compatibilità
+    }
+    const rolesText = roles.join(' • ');
+
     // Expertise & Interests, con fallback sul vecchio "areas"
     let expertise = m.expertise || [];
     let interests = m.interests || [];
@@ -50,7 +59,7 @@ function renderCards(list) {
 
     el.innerHTML = `
       <h3>${m.name}</h3>
-      <p><strong>${m.role || ''}</strong>${affiliationsText ? ' • ' + affiliationsText : ''}</p>
+      <p><strong>${rolesText}</strong>${affiliationsText ? ' • ' + affiliationsText : ''}</p>
       <p>${m.location || ''}</p>
       <div class="badges">
         ${badgesHtml}
@@ -67,16 +76,26 @@ function applyFilters(members) {
   const area = document.getElementById('areaFilter').value;
 
   const filtered = members.filter(m => {
+    // Ruoli (roles + fallback su role)
+    const roles = (m.roles && Array.isArray(m.roles) && m.roles.length > 0)
+      ? m.roles
+      : (m.role ? [m.role] : []);
+
+    // Affiliazioni (affiliations + fallback su affiliation)
+    const allAffiliations = (m.affiliations && m.affiliations.length > 0)
+      ? m.affiliations
+      : (m.affiliation ? [m.affiliation] : []);
+
+    // Aree (expertise + interests + eventuali areas legacy)
     const expertise = m.expertise || [];
     const interests = m.interests || [];
     const legacyAreas = m.areas || [];
-
     const allAreas = [...expertise, ...interests, ...legacyAreas];
 
     const haystack = [
       m.name || '',
-      m.role || '',
-      m.affiliation || '',
+      ...roles,
+      ...allAffiliations,
       ...allAreas
     ].join(' ').toLowerCase();
 
