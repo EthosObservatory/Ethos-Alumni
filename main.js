@@ -44,10 +44,10 @@ function renderCards(list) {
       badgesHtml += `<div class="badge-group"><span class="badge-label">Interests</span>${interestsBadges}</div>`;
     }
 
-    // --- DEGREES ---
-    const degrees = Array.isArray(m.degrees) ? m.degrees : [];
-    const degreesRow = degrees.length
-      ? `<p class="meta-line"><strong>Degrees:</strong> ${degrees.join(" • ")}</p>`
+    // --- EDUCATION ---
+    const education = Array.isArray(m.education) ? m.education : [];
+    const educationRow = education.length
+      ? `<p class="meta-line"><strong>Education:</strong> ${education.join(" • ")}</p>`
       : "";
 
     // --- WORKS (papers, books, projects) ---
@@ -121,7 +121,7 @@ function renderCards(list) {
       <p><strong>${rolesText}</strong>${affiliationsText ? " • " + affiliationsText : ""}</p>
       <p>${m.location || ""}</p>
 
-      ${degreesRow}
+      ${educationRow}
 
       <div class="badges">${badgesHtml}</div>
 
@@ -144,14 +144,16 @@ function applyFilters(members) {
     const expertise = Array.isArray(m.expertise) ? m.expertise : [];
     const interests = Array.isArray(m.interests) ? m.interests : [];
     const legacyAreas = Array.isArray(m.areas) ? m.areas : [];
-
     const allAreas = [...expertise, ...interests, ...legacyAreas];
+
+    const education = Array.isArray(m.education) ? m.education : [];
 
     const haystack = [
       m.name || "",
       ...roles,
       ...affiliations,
-      ...allAreas
+      ...allAreas,
+      ...education
     ].join(" ").toLowerCase();
 
     const okSearch = !q || haystack.includes(q);
