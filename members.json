@@ -2,11 +2,13 @@
   "members": [
     {
       "name": "Prof. Sebastiano Maffettone",
-      "role": "Founding Director, ETHOS",
+      "roles": [
+        "Founding Director, ETHOS"
+      ],
       "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University"
-  ],
+        "ETHOS",
+        "LUISS Guido Carli University"
+      ],
       "location": "Rome, Italy",
       "expertise": [
         "Political Philosophy",
@@ -17,15 +19,16 @@
       "email": "maffettone@gmail.com"
     },
 
-    
     {
       "name": "Camilla Dacrema",
-      "role": "Coordinator, ETHOS",
+      "roles": [
+        "Coordinator, ETHOS"
+      ],
       "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University",
-    "Università Vita - Salute San Raffaele"
-  ],
+        "ETHOS",
+        "LUISS Guido Carli University",
+        "Università Vita - Salute San Raffaele"
+      ],
       "location": "Rome, Italy",
       "expertise": [
         "Political Philosophy",
@@ -41,15 +44,17 @@
       "email": "cdacrema@luiss.it"
     },
 
-    
     {
       "name": "Roberto Sforza",
-      "role": "Political Philosophy Research & Project Intern, ETHOS; Joint Coordinator, Young ETHOS",
+      "roles": [
+        "Political Philosophy Research & Project Intern, ETHOS",
+        "Joint Coordinator, Young ETHOS"
+      ],
       "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University",
-    "Sciences Po Bordeaux"
-  ],
+        "ETHOS",
+        "LUISS Guido Carli University",
+        "Sciences Po Bordeaux"
+      ],
       "location": "Rome, Italy",
       "expertise": [
         "International Relations",
@@ -68,15 +73,17 @@
       "email": "roberto.o.l.sforza@gmail.com"
     },
 
-    
-     {
+    {
       "name": "Alessandro Jean-Baptiste Franco Bruneau",
-      "role": "Political Philosophy Research & Project Intern, ETHOS; Joint Coordinator, Young ETHOS",
+      "roles": [
+        "Political Philosophy Research & Project Intern, ETHOS",
+        "Joint Coordinator, Young ETHOS"
+      ],
       "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University",
-    "Sciences Po Bordeaux"
-  ],
+        "ETHOS",
+        "LUISS Guido Carli University",
+        "Sciences Po Bordeaux"
+      ],
       "location": "Rome, Italy",
       "expertise": [
         "International Relations",
@@ -92,6 +99,4 @@
       "email": "alessandro.bruneau@gmail.com"
     }
   ]
-
-  
 }
