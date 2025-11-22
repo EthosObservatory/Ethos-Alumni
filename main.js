@@ -12,35 +12,31 @@ function renderCards(list) {
     const el = document.createElement('div');
     el.className = 'card';
 
-    // Affiliazioni multiple o singola
-    const allAffiliations = (m.affiliations && m.affiliations.length > 0)
-      ? m.affiliations
-      : (m.affiliation ? [m.affiliation] : []);
-
-    const affiliationsText = allAffiliations.join(' • ');
-
-    // Ruoli multipli o singolo
+    // --- ROLES (merged ETHOS + external) ---
     let roles = [];
-    if (m.roles && Array.isArray(m.roles) && m.roles.length > 0) {
+    if (Array.isArray(m.roles) && m.roles.length > 0) {
       roles = m.roles;
     } else if (m.role) {
-      roles = [m.role]; // fallback per compatibilità
+      roles = [m.role]; // fallback
     }
-    const rolesText = roles.join(' • ');
+    const rolesText = roles.join(" • ");
 
-    // Expertise & Interests, con fallback sul vecchio "areas"
-    let expertise = m.expertise || [];
-    let interests = m.interests || [];
+    // --- AFFILIATIONS ---
+    const affiliations = Array.isArray(m.affiliations) ? m.affiliations : [];
+    const affiliationsText = affiliations.join(" • ");
 
-    if (expertise.length === 0 && interests.length === 0 && m.areas && m.areas.length > 0) {
-      // Se il profilo è ancora vecchio stile, trattiamo "areas" come "interests"
-      interests = m.areas;
+    // --- EXPERTISE / INTERESTS (+ fallback to areas legacy) ---
+    let expertise = Array.isArray(m.expertise) ? m.expertise : [];
+    let interests = Array.isArray(m.interests) ? m.interests : [];
+
+    if (expertise.length === 0 && interests.length === 0 && Array.isArray(m.areas)) {
+      interests = m.areas; // legacy compatibility
     }
 
-    const expertiseBadges = (expertise || []).map(a => `<span class="badge">${a}</span>`).join('');
-    const interestsBadges = (interests || []).map(a => `<span class="badge">${a}</span>`).join('');
+    const expertiseBadges = expertise.map(e => `<span class="badge">${e}</span>`).join("");
+    const interestsBadges = interests.map(e => `<span class="badge">${e}</span>`).join("");
 
-    let badgesHtml = '';
+    let badgesHtml = "";
     if (expertiseBadges) {
       badgesHtml += `<div class="badge-group"><span class="badge-label">Expertise</span>${expertiseBadges}</div>`;
     }
@@ -48,22 +44,89 @@ function renderCards(list) {
       badgesHtml += `<div class="badge-group"><span class="badge-label">Interests</span>${interestsBadges}</div>`;
     }
 
-    // Contatti (LinkedIn + email, eventualmente estendibili)
-    let contactsHtml = '';
-    if (m.linkedin) {
-      contactsHtml += `<a href="${m.linkedin}" target="_blank" rel="noopener">LinkedIn</a>`;
-    }
-    if (m.email) {
-      contactsHtml += `${contactsHtml ? ' • ' : ''}<a href="mailto:${m.email}">Email</a>`;
+    // --- DEGREES ---
+    const degrees = Array.isArray(m.degrees) ? m.degrees : [];
+    const degreesRow = degrees.length
+      ? `<p class="meta-line"><strong>Degrees:</strong> ${degrees.join(" • ")}</p>`
+      : "";
+
+    // --- WORKS (papers, books, projects) ---
+    const works = Array.isArray(m.works) ? m.works : [];
+    let worksHtml = "";
+
+    if (works.length > 0) {
+      const items = works.map(w => {
+        if (typeof w === "string") return `<li>${w}</li>`;
+
+        const title = w.title ? `<strong>${w.title}</strong>` : "";
+        const meta = [w.type, w.year].filter(Boolean).join(", ");
+        const metaText = meta ? ` (${meta})` : "";
+        let content = `${title}${metaText}`;
+
+        if (w.link) {
+          content = `<a href="${w.link}" target="_blank" rel="noopener">${content}</a>`;
+        }
+        if (w.note) content += ` – ${w.note}`;
+
+        return `<li>${content}</li>`;
+      }).join("");
+
+      worksHtml = `
+        <div class="works">
+          <p class="meta-line"><strong>Works:</strong></p>
+          <ul class="works-list">
+            ${items}
+          </ul>
+        </div>
+      `;
     }
 
+    // --- CONTACTS (multiple emails, phones, links) ---
+    const emails = Array.isArray(m.emails) ? m.emails : (m.email ? [m.email] : []);
+    const phones = Array.isArray(m.phones) ? m.phones : [];
+    const linkedinProfiles = Array.isArray(m.linkedin_profiles)
+      ? m.linkedin_profiles
+      : (m.linkedin ? [m.linkedin] : []);
+    const otherLinks = Array.isArray(m.links) ? m.links : [];
+
+    const contacts = [];
+
+    linkedinProfiles.forEach((url, i) => {
+      const label = linkedinProfiles.length > 1 ? `LinkedIn ${i+1}` : "LinkedIn";
+      contacts.push(`<a href="${url}" target="_blank">${label}</a>`);
+    });
+
+    emails.forEach((mail, i) => {
+      const label = emails.length > 1 ? `Email ${i+1}` : "Email";
+      contacts.push(`<a href="mailto:${mail}">${label}</a>`);
+    });
+
+    phones.forEach((phone, i) => {
+      const clean = phone.replace(/\s+/g, "");
+      const label = phones.length > 1 ? `Tel ${i+1}` : "Tel";
+      contacts.push(`<a href="tel:${clean}">${label}: ${phone}</a>`);
+    });
+
+    otherLinks.forEach(link => {
+      if (link && link.url) {
+        contacts.push(`<a href="${link.url}" target="_blank">${link.label || "Link"}</a>`);
+      }
+    });
+
+    const contactsHtml = contacts.join(" • ");
+
+    // --- CARD OUTPUT ---
     el.innerHTML = `
       <h3>${m.name}</h3>
-      <p><strong>${rolesText}</strong>${affiliationsText ? ' • ' + affiliationsText : ''}</p>
-      <p>${m.location || ''}</p>
-      <div class="badges">
-        ${badgesHtml}
-      </div>
+      <p><strong>${rolesText}</strong>${affiliationsText ? " • " + affiliationsText : ""}</p>
+      <p>${m.location || ""}</p>
+
+      ${degreesRow}
+
+      <div class="badges">${badgesHtml}</div>
+
+      ${worksHtml}
+
       <p>${contactsHtml}</p>
     `;
 
@@ -72,46 +135,38 @@ function renderCards(list) {
 }
 
 function applyFilters(members) {
-  const q = document.getElementById('search').value.toLowerCase().trim();
-  const area = document.getElementById('areaFilter').value;
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const area = document.getElementById("areaFilter").value;
 
   const filtered = members.filter(m => {
-    // Ruoli (roles + fallback su role)
-    const roles = (m.roles && Array.isArray(m.roles) && m.roles.length > 0)
-      ? m.roles
-      : (m.role ? [m.role] : []);
+    const roles = Array.isArray(m.roles) ? m.roles : (m.role ? [m.role] : []);
+    const affiliations = Array.isArray(m.affiliations) ? m.affiliations : [];
+    const expertise = Array.isArray(m.expertise) ? m.expertise : [];
+    const interests = Array.isArray(m.interests) ? m.interests : [];
+    const legacyAreas = Array.isArray(m.areas) ? m.areas : [];
 
-    // Affiliazioni (affiliations + fallback su affiliation)
-    const allAffiliations = (m.affiliations && m.affiliations.length > 0)
-      ? m.affiliations
-      : (m.affiliation ? [m.affiliation] : []);
-
-    // Aree (expertise + interests + eventuali areas legacy)
-    const expertise = m.expertise || [];
-    const interests = m.interests || [];
-    const legacyAreas = m.areas || [];
     const allAreas = [...expertise, ...interests, ...legacyAreas];
 
     const haystack = [
-      m.name || '',
+      m.name || "",
       ...roles,
-      ...allAffiliations,
+      ...affiliations,
       ...allAreas
-    ].join(' ').toLowerCase();
+    ].join(" ").toLowerCase();
 
-    const okQ = !q || haystack.includes(q);
-    const okA = !area || allAreas.includes(area);
+    const okSearch = !q || haystack.includes(q);
+    const okArea = !area || allAreas.includes(area);
 
-    return okQ && okA;
+    return okSearch && okArea;
   });
 
   renderCards(filtered);
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const members = await loadMembers();
   renderCards(members);
 
-  document.getElementById('search').addEventListener('input', () => applyFilters(members));
-  document.getElementById('areaFilter').addEventListener('change', () => applyFilters(members));
+  document.getElementById("search").addEventListener("input", () => applyFilters(members));
+  document.getElementById("areaFilter").addEventListener("change", () => applyFilters(members));
 });
