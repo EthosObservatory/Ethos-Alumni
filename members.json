@@ -168,6 +168,46 @@
 
       "links": [],
       "works": []
+    },
+
+    {
+      "name": "Flavio Illuzzi",
+      "roles": [
+        "Research Collaborator, ETHOS"
+      ],
+      "affiliations": [
+        "ETHOS",
+        "LUISS Guido Carli University"
+      ],
+      "location": "Rome, Italy",
+
+      "education": [],
+
+      "expertise": [
+        "Economics & Management",
+        "Artificial Intelligence",
+        "Digital Ethics",
+        "Business Ethics",
+        "Sustainability",
+        "Religion & Theology"
+      ],
+      
+      "interests": [
+        "Political Philosophy",
+        "Ethics of Disability"
+      ],
+
+      "emails": [
+        "flavioilluzziroma@gmail.com",
+        "filluzzi@luiss.it"
+      ],
+      "phones": [],
+
+      "linkedin_profiles": [],
+
+      "links": [],
+      "works": []
     }
+
   ]
 }
