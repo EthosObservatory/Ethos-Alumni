@@ -11,7 +11,7 @@
       ],
       "location": "Rome, Italy",
 
-      "degrees": [],
+      "education": [],
 
       "expertise": [
         "Political Philosophy",
@@ -20,7 +20,9 @@
       ],
       "interests": [],
 
-      "emails": ["maffettone@gmail.com"],
+      "emails": [
+        "maffettone@gmail.com"
+      ],
       "phones": [],
 
       "linkedin_profiles": [
@@ -43,7 +45,7 @@
       ],
       "location": "Rome, Italy",
 
-      "degrees": [],
+      "education": [],
 
       "expertise": [
         "Political Philosophy",
@@ -56,7 +58,9 @@
         "Food and Agriculture Ethics"
       ],
 
-      "emails": ["cdacrema@luiss.it"],
+      "emails": [
+        "cdacrema@luiss.it"
+      ],
       "phones": [],
 
       "linkedin_profiles": [
@@ -68,127 +72,125 @@
     },
 
     {
-  "name": "Roberto Sforza",
+      "name": "Roberto Sforza",
 
-  "roles": [
-    "Political Philosophy Research & Project Intern, ETHOS",
-    "Joint Coordinator, Young ETHOS"
-  ],
+      "roles": [
+        "Political Philosophy Research & Project Intern, ETHOS",
+        "Joint Coordinator, Young ETHOS"
+      ],
 
-  "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University",
-    "Sciences Po Bordeaux"
-  ],
+      "affiliations": [
+        "ETHOS",
+        "LUISS Guido Carli University",
+        "Sciences Po Bordeaux"
+      ],
 
-  "location": "Rome, Italy",
+      "location": "Rome, Italy",
 
-  "degrees": [
-    "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
-    "BA in Études Politiques – Sciences Po Bordeaux",
-    "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
-  ],
+      "education": [
+        "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
+        "BA in Études Politiques – Sciences Po Bordeaux",
+        "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
+      ],
 
-  "expertise": [
-    "International Relations",
-    "Political Philosophy",
-    "Identity Politics",
-    "Artificial Intelligence",
-    "Music & Literature"
-  ],
+      "expertise": [
+        "International Relations",
+        "Political Philosophy",
+        "Identity Politics",
+        "Artificial Intelligence",
+        "Music & Literature"
+      ],
 
-  "interests": [
-    "Multiculturalism & Migration",
-    "Globalisation",
-    "Religion & Theology",
-    "Arts & Cultural Ethics"
-  ],
+      "interests": [
+        "Multiculturalism & Migration",
+        "Globalisation",
+        "Religion & Theology",
+        "Arts & Cultural Ethics"
+      ],
 
-  "emails": [
-    "roberto.o.l.sforza@gmail.com"
-  ],
+      "emails": [
+        "roberto.o.l.sforza@gmail.com"
+      ],
 
-  "phones": [],
+      "phones": [],
 
-  "linkedin_profiles": [
-    "https://www.linkedin.com/in/roberto-sforza-ab112526b/"
-  ],
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/roberto-sforza-ab112526b/"
+      ],
 
-  "links": [],
-
-  "works": [
-    {
-      "title": "In Defence of Democracy: The Worst Form of Government, Except for All the Others. Explaining the Russia-Ukraine War by the Belligerents' Domestic Regimes",
-      "type": "Dissertation thesis (Political Philosophy & International Relations)",
-      "year": "2025",
-      "link": "",
-      "note": "Work exploring the Russia–Ukraine war, Popper's Paradoxes, Political Liberalism, and Militant Democracy through the lenses of domestic regime types, liberal IR theories, and democratic theory."
+      "links": [],
+      "works": [
+        {
+          "title": "In Defence of Democracy: The Worst Form of Government, Except for All the Others. Explaining the Russia-Ukraine War by the Belligerents' Domestic Regimes",
+          "type": "Dissertation thesis (Political Philosophy & International Relations)",
+          "year": "2025",
+          "link": "",
+          "note": "Work exploring the Russia–Ukraine war, Popper's Paradoxes, Political Liberalism, and Militant Democracy through the lenses of domestic regime types, liberal IR theories, and democratic theory."
+        },
+        {
+          "title": "Word Wars",
+          "type": "Debate event / Young ETHOS project",
+          "year": "2024 - onwards",
+          "link": "",
+          "note": "Debate format and event series co-created within Young ETHOS, designed as “A Clash of Ideas, not of People”."
+        }
+      ]
     },
-    {
-      "title": "Word Wars",
-      "type": "Debate event / Young ETHOS project",
-      "year": "2024 - onwards",
-      "link": "",
-      "note": "Debate format and event series co-created within Young ETHOS, designed as “A Clash of Ideas, not of People”."
-    }
-  ]
-},
 
     {
-  "name": "Alessandro Jean-Baptiste Franco Bruneau",
+      "name": "Alessandro Jean-Baptiste Franco Bruneau",
 
-  "roles": [
-    "Political Philosophy Research & Project Intern, ETHOS",
-    "Joint Coordinator, Young ETHOS"
-  ],
+      "roles": [
+        "Political Philosophy Research & Project Intern, ETHOS",
+        "Joint Coordinator, Young ETHOS"
+      ],
 
-  "affiliations": [
-    "ETHOS",
-    "LUISS Guido Carli University",
-    "Sciences Po Bordeaux"
-  ],
+      "affiliations": [
+        "ETHOS",
+        "LUISS Guido Carli University",
+        "Sciences Po Bordeaux"
+      ],
 
-  "location": "Rome, Italy",
+      "location": "Rome, Italy",
 
-  "degrees": [
-    "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
-    "BA in Études Politiques – Sciences Po Bordeaux",
-    "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
-  ],
+      "education": [
+        "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
+        "BA in Études Politiques – Sciences Po Bordeaux",
+        "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
+      ],
 
+      "expertise": [
+        "International Relations",
+        "Artificial Intelligence",
+        "Economic Intelligence"
+      ],
 
-  "expertise": [
-    "International Relations",
-    "Artificial Intelligence",
-    "Economic Intelligence"
-  ],
+      "interests": [
+        "Political Philosophy",
+        "Globalisation",
+        "Digital Ethics"
+      ],
 
-  "interests": [
-    "Political Philosophy",
-    "Globalisation",
-    "Digital Ethics"
-  ],
+      "emails": [
+        "alessandro.bruneau@gmail.com"
+      ],
 
-  "emails": [
-    "alessandro.bruneau@gmail.com"
-  ],
+      "phones": [],
 
-  "phones": [],
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/alessandro-bruneau-48220b294/"
+      ],
 
-  "linkedin_profiles": [
-    "https://www.linkedin.com/in/alessandro-bruneau-48220b294/"
-  ],
-
-  "links": [],
-
-  "works": [
-    {
-      "title": "Word Wars",
-      "type": "Debate event / Young ETHOS project",
-      "year": "2024 - onwards",
-      "link": "",
-      "note": "Debate initiative co-founded with Roberto Sforza within Young ETHOS, framed as “A Clash of Ideas, not of People”."
+      "links": [],
+      "works": [
+        {
+          "title": "Word Wars",
+          "type": "Debate event / Young ETHOS project",
+          "year": "2024 - onwards",
+          "link": "",
+          "note": "Debate initiative co-founded with Roberto Sforza within Young ETHOS, framed as “A Clash of Ideas, not of People”."
+        }
+      ]
     }
   ]
 }
-
