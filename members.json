@@ -87,7 +87,8 @@
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University",
-        "Sciences Po Bordeaux"
+        "Sciences Po Bordeaux",
+		"EU Strategy"
       ],
 
       "location": "Rome, Italy",
@@ -343,6 +344,53 @@
 		  "phones": [],
 
 		  "linkedin_profiles": [],
+
+		  "links": [],
+
+		  "works": []
+		},
+
+	{
+		  "name": "Anita Dell'Aglio",
+
+		  "roles": [
+		    "Collaborator, Young ETHOS"
+		  ],
+
+		  "affiliations": [
+		    "ETHOS",
+		    "LUISS Guido Carli University"
+		  ],
+
+		  "location": "Rome, Italy",
+
+		  "education": [
+		    "BA in Politics, Philosophy and Economics – LUISS Guido Carli"
+		  ],
+
+		  "expertise": [
+		    "International Relations",
+		    "Political Philosophy"
+		  ],
+
+		  "interests": [
+		    "International Relations",
+		    "Political Philosophy",
+		    "International Security",
+		    "Globalisation",
+		    "Artificial Intelligence",
+		    "Multiculturalism & Migration",
+		    "Music & Literature",
+		    "Information Ethics"
+		  ],
+
+		  "emails": [anita.dellaglio25@gmail.com],
+
+		  "phones": [],
+
+		  "linkedin_profiles": [
+			  "https://www.linkedin.com/in/anita-dell’aglio-57894b349/"
+		  ],
 
 		  "links": [],
 
