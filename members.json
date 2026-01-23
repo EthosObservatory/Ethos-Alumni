@@ -270,8 +270,8 @@
 		  "location": "Rome, Italy",
 
 		  "education": [
-		    "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
-		    "MSc in International Relations (Major: Security) – LUISS Guido Carli (in progress)"
+		    "BA in Politics: Philosophy and Economics – LUISS Guido Carli",
+		    "MSc in International Relations (Major: Security) – LUISS Guido Carli"
 		  ],
 
 		  "expertise": [
@@ -295,6 +295,56 @@
 		  "linkedin_profiles": [
 		    "https://www.linkedin.com/in/greta-colaneri-7498a7295"
 		  ],
+
+		  "links": [],
+
+		  "works": []
+		},
+
+	{
+		  "name": "Taymour Elmasry",
+
+		  "roles": [
+		    "Policy Officer, European Commission",
+		    "Former Founding Member, Young ETHOS"
+		  ],
+
+		  "affiliations": [
+		    "European Commission"
+		  ],
+
+		  "location": "Brussels, Belgium",
+
+		  "education": [
+		    "MA in EU International Relations and Diplomacy Studies – College of Europe (Bruges, Belgium)",
+		    "MA in Policies and Governance in Europe – King's College London (London, United Kingdom)",
+		    "MA in Policies and Governance in Europe – LUISS Guido Carli (Rome, Italy)",
+		    "BA in Political Science – LUISS Guido Carli (Rome, Italy)"
+		  ],
+
+		  "expertise": [
+		    "International Relations",
+		    "Globalisation"
+		  ],
+
+		  "interests": [
+		    "Political Philosophy",
+		    "International Relations",
+		    "Globalisation",
+		    "Sustainability",
+		    "Information Ethics",
+		    "Music & Literature"
+		  ],
+
+		  "emails": [
+		    "taymour.elmasry@coleurope.eu"
+		  ],
+
+		  "phones": [
+		    "+39 347 401 1791"
+		  ],
+
+		  "linkedin_profiles": [],
 
 		  "links": [],
 
