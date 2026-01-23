@@ -252,8 +252,57 @@
 
       "links": [],
       "works": []
-    },
+    },    
 
+    {
+		  "name": "Greta Colaneri",
+
+		  "roles": [
+		    "Intern, ETHOS"
+		  ],
+
+		  "affiliations": [
+		    "ETHOS",
+		    "LUISS Guido Carli University"
+		  ],
+
+		  "location": "Rome, Italy",
+
+		  "education": [
+		    "BA in Politics, Philosophy and Economics – LUISS Guido Carli",
+		    "MSc in International Relations (Major: Security) – LUISS Guido Carli (in progress)"
+		  ],
+
+		  "expertise": [
+		    "International Relations",
+		    "Artificial Intelligence",
+		    "International Security"
+		  ],
+
+		  "interests": [
+		    "International Relations",
+		    "Artificial Intelligence",
+		    "International Security"
+		  ],
+
+		  "emails": [
+		    "greta.colaneri@studenti.luiss.it"
+		  ],
+
+		  "phones": [
+		    "+39 342 766 2238"
+		  ],
+
+		  "linkedin_profiles": [
+		    "https://www.linkedin.com/in/greta-colaneri-7498a7295"
+		  ],
+
+		  "links": [],
+
+		  "works": []
+		},
+
+    
     {
       "name": "Matteo Russell",
 
@@ -300,6 +349,8 @@
       "links": [],
       "works": []
     }
+
+    
 
     
   ]
