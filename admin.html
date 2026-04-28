@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — ETHOS Alumni Network</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body class="admin-body">
+
+  <!-- ════════════════════════════════════════════════════
+       LOGIN PAGE
+  ═════════════════════════════════════════════════════ -->
+  <div class="login-page" id="loginPage">
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="logo">ETHOS<span class="logo-dot"></span></div>
+        <p>Observatory on Public Ethics</p>
+      </div>
+      <h2>Admin Access</h2>
+
+      <div class="form-group">
+        <label class="form-label" for="loginPassword">Admin Password</label>
+        <input type="password" id="loginPassword" placeholder="Enter password" autocomplete="current-password" />
+        <div class="form-error" id="loginError">Incorrect password. Please try again.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="loginToken">GitHub Personal Access Token</label>
+        <input type="password" id="loginToken" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off" />
+        <div class="form-hint">Required to save changes to the site. Use a fine-grained PAT with <em>Contents: Read &amp; Write</em> on this repo. Stored locally in your browser session only.</div>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:8px" id="loginBtn">
+        Sign in to Admin Panel
+      </button>
+
+      <p style="font-size:.78rem;color:var(--text-3);text-align:center;margin-top:16px">
+        <a href="index.html" style="color:var(--text-3)">← Back to site</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       ADMIN SHELL
+  ═════════════════════════════════════════════════════ -->
+  <div class="admin-shell" id="adminShell">
+
+    <!-- Topbar -->
+    <div class="admin-topbar">
+      <a class="logo" href="index.html" style="text-decoration:none;color:var(--text)">ETHOS<span class="logo-dot"></span></a>
+      <span class="admin-topbar-badge">Admin</span>
+      <div class="admin-topbar-spacer"></div>
+      <span class="admin-topbar-user">Signed in</span>
+      <button class="btn btn-ghost btn-sm" id="logoutBtn" style="margin-left:8px">Sign out</button>
+    </div>
+
+    <div class="admin-layout">
+
+      <!-- Sidebar -->
+      <aside class="admin-sidebar">
+        <div class="sidebar-label">Content</div>
+        <button class="sidebar-item active" data-panel="dashboard">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Dashboard
+        </button>
+        <button class="sidebar-item" data-panel="posts">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          Articles
+          <span class="sidebar-count" id="sidebarPostCount">0</span>
+        </button>
+        <button class="sidebar-item" data-panel="members">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Members
+          <span class="sidebar-count" id="sidebarMemberCount">0</span>
+        </button>
+        <button class="sidebar-item" data-panel="areas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+          Areas & Tags
+        </button>
+
+        <div class="sidebar-label">Settings</div>
+        <button class="sidebar-item" data-panel="settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"/></svg>
+          Settings
+        </button>
+
+        <div style="flex:1"></div>
+        <a href="index.html" class="sidebar-item" style="text-decoration:none">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          View site
+        </a>
+      </aside>
+
+      <!-- Content area -->
+      <main class="admin-content">
+
+        <!-- ── Dashboard ─────────────────────────────── -->
+        <div class="admin-panel active" id="panelDashboard">
+          <div class="panel-header">
+            <h2>Dashboard</h2>
+          </div>
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-value" id="dashMembers">—</div>
+              <div class="stat-label">Members</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="dashPosts">—</div>
+              <div class="stat-label">Published articles</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="dashDrafts">—</div>
+              <div class="stat-label">Drafts</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value" id="dashAreas">—</div>
+              <div class="stat-label">Expertise areas</div>
+            </div>
+          </div>
+          <div class="settings-section" id="tokenStatus">
+            <h3>GitHub Connection</h3>
+            <p id="tokenStatusMsg">Checking connection…</p>
+          </div>
+          <div class="settings-section">
+            <h3>Quick Actions</h3>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <button class="btn btn-outline btn-sm" onclick="Admin.openNewPostModal()">+ New Article</button>
+              <button class="btn btn-outline btn-sm" onclick="Admin.openNewMemberModal()">+ New Member</button>
+              <a class="btn btn-ghost btn-sm" href="posts.html" target="_blank">View Articles page ↗</a>
+              <a class="btn btn-ghost btn-sm" href="index.html#directory" target="_blank">View Directory ↗</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Posts ─────────────────────────────────── -->
+        <div class="admin-panel" id="panelPosts">
+          <div class="panel-header">
+            <h2>Articles & Posts</h2>
+            <button class="btn btn-primary btn-sm" id="newPostBtn">+ New Article</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="postsTable">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Category</th>
+                  <th>Author</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="postsTableBody">
+                <tr><td colspan="6" style="color:var(--text-3);padding:24px">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Members ───────────────────────────────── -->
+        <div class="admin-panel" id="panelMembers">
+          <div class="panel-header">
+            <h2>Members</h2>
+            <button class="btn btn-primary btn-sm" id="newMemberBtn">+ New Member</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table" id="membersTable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Primary Role</th>
+                  <th>Location</th>
+                  <th>Expertise</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="membersTableBody">
+                <tr><td colspan="5" style="color:var(--text-3);padding:24px">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Areas ─────────────────────────────────── -->
+        <div class="admin-panel" id="panelAreas">
+          <div class="panel-header">
+            <h2>Areas & Tags</h2>
+          </div>
+          <div class="settings-section">
+            <h3>Expertise &amp; Interest Areas</h3>
+            <p>These are all areas currently used across member profiles. To add a new area, add it to a member's expertise or interests fields. To make it appear in the directory filter, update the <code>areaFilter</code> select in <code>index.html</code>.</p>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>Area</th><th>Members with this area</th><th>Type</th></tr></thead>
+              <tbody id="areasTableBody">
+                <tr><td colspan="3" style="color:var(--text-3);padding:24px">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Settings ──────────────────────────────── -->
+        <div class="admin-panel" id="panelSettings">
+          <div class="panel-header">
+            <h2>Settings</h2>
+          </div>
+
+          <div class="settings-section">
+            <h3>GitHub Token</h3>
+            <p>The GitHub Personal Access Token is used to save changes directly to the repository. Without it, the admin panel works in read-only / preview mode only.</p>
+            <p>Create a <strong>fine-grained PAT</strong> at <code>github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens</code> with <em>Contents: Read &amp; Write</em> permission on the <code>ethosobservatory/ethos-alumni</code> repository.</p>
+            <div class="form-group">
+              <label class="form-label">Current Token</label>
+              <div class="token-display">
+                <input type="password" id="settingsToken" placeholder="ghp_xxxxxxxxxxxx" />
+                <button class="btn btn-outline btn-sm" id="toggleTokenBtn">Show</button>
+                <button class="btn btn-primary btn-sm" id="saveTokenBtn">Save</button>
+              </div>
+              <div class="form-hint">The token is stored in your browser's localStorage. It is never sent anywhere except directly to api.github.com.</div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Admin Password</h3>
+            <p>To change the admin password, update the <code>ADMIN_HASH</code> constant in <code>admin.js</code> with the SHA-256 hash of your new password. You can generate a SHA-256 hash online or with the command <code>echo -n "your-password" | sha256sum</code>.</p>
+            <p>Current password hash: <code id="currentHashDisplay"></code></p>
+          </div>
+
+          <div class="settings-section">
+            <h3>Repository</h3>
+            <p>This admin panel writes to: <code>ethosobservatory/ethos-alumni</code> (branch: <code>main</code>)</p>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       POST MODAL
+  ═════════════════════════════════════════════════════ -->
+  <div class="admin-modal-overlay hidden" id="postModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="postModalTitle">New Article</h3>
+        <button class="modal-close" id="postModalClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="postId" />
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-tab="postBasic">Basic Info</button>
+          <button class="modal-tab" data-tab="postContent">Content</button>
+        </div>
+
+        <!-- Basic Info tab -->
+        <div class="modal-tab-panel active" id="postBasic">
+          <div class="form-group">
+            <label class="form-label">Title *</label>
+            <input type="text" id="postTitle" placeholder="Article title" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Author</label>
+              <input type="text" id="postAuthor" placeholder="Author name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date</label>
+              <input type="text" id="postDate" placeholder="YYYY-MM-DD" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select id="postCategory">
+                <option value="Announcements">Announcements</option>
+                <option value="Insights">Insights</option>
+                <option value="Research">Research</option>
+                <option value="Events">Events</option>
+                <option value="News">News</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Status</label>
+              <select id="postPublished">
+                <option value="true">Published</option>
+                <option value="false">Draft</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Excerpt</label>
+            <textarea id="postExcerpt" rows="3" placeholder="Brief description shown in article cards (1-2 sentences)"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tags <span style="color:var(--text-3);font-weight:400">(comma-separated)</span></label>
+            <input type="text" id="postTags" placeholder="ethics, AI, governance" />
+          </div>
+        </div>
+
+        <!-- Content tab -->
+        <div class="modal-tab-panel" id="postContent">
+          <p style="font-size:.82rem;color:var(--text-3);margin-bottom:12px">Write in Markdown. The preview updates as you type.</p>
+          <div class="md-editor">
+            <textarea id="postContentMd" placeholder="## Introduction&#10;&#10;Write your article here in Markdown..."></textarea>
+            <div class="md-preview post-content" id="postContentPreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn btn-ghost btn-sm" id="postModalCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="postModalSave">Save Article</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       MEMBER MODAL
+  ═════════════════════════════════════════════════════ -->
+  <div class="admin-modal-overlay hidden" id="memberModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="memberModalTitle">New Member</h3>
+        <button class="modal-close" id="memberModalClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="memberIndex" value="-1" />
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-tab="memBasic">Profile</button>
+          <button class="modal-tab" data-tab="memExpertise">Expertise</button>
+          <button class="modal-tab" data-tab="memContacts">Contacts</button>
+          <button class="modal-tab" data-tab="memWorks">Works</button>
+        </div>
+
+        <!-- Profile tab -->
+        <div class="modal-tab-panel active" id="memBasic">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" id="memName" placeholder="First Last" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Location</label>
+            <input type="text" id="memLocation" placeholder="City, Country" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Roles <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="rolesContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('rolesContainer','role-', 'Role or position')">+ Add role</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Affiliations <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="affiliationsContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('affiliationsContainer','affil-', 'Institution or organisation')">+ Add affiliation</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Education <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="educationContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('educationContainer','edu-', 'Degree – Institution')">+ Add education</button>
+          </div>
+        </div>
+
+        <!-- Expertise tab -->
+        <div class="modal-tab-panel" id="memExpertise">
+          <div class="form-group">
+            <label class="form-label">Expertise Areas <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="expertiseContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('expertiseContainer','exp-', 'e.g. Political Philosophy')">+ Add expertise</button>
+          </div>
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">Research Interests <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="interestsContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('interestsContainer','int-', 'e.g. Digital Ethics')">+ Add interest</button>
+          </div>
+        </div>
+
+        <!-- Contacts tab -->
+        <div class="modal-tab-panel" id="memContacts">
+          <div class="form-group">
+            <label class="form-label">Email Addresses <span style="color:var(--text-3);font-weight:400">— one per line</span></label>
+            <div class="dynamic-list" id="emailsContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('emailsContainer','email-', 'email@example.com')">+ Add email</button>
+          </div>
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">Phone Numbers</label>
+            <div class="dynamic-list" id="phonesContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('phonesContainer','phone-', '+39 000 000 0000')">+ Add phone</button>
+          </div>
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">LinkedIn Profiles</label>
+            <div class="dynamic-list" id="linkedinContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addListItem('linkedinContainer','li-', 'https://linkedin.com/in/…')">+ Add LinkedIn</button>
+          </div>
+          <div class="form-group" style="margin-top:20px">
+            <label class="form-label">Other Links <span style="color:var(--text-3);font-weight:400">— label | URL format</span></label>
+            <div class="dynamic-list" id="linksContainer"></div>
+            <button class="add-item-btn" onclick="Admin.addLinkItem()">+ Add link</button>
+          </div>
+        </div>
+
+        <!-- Works tab -->
+        <div class="modal-tab-panel" id="memWorks">
+          <div id="worksContainer"></div>
+          <button class="add-item-btn" style="margin-top:8px" onclick="Admin.addWorkItem()">+ Add work / publication</button>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn btn-ghost btn-sm" id="memberModalCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="memberModalSave">Save Member</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       CONFIRM DIALOG
+  ═════════════════════════════════════════════════════ -->
+  <div class="confirm-overlay hidden" id="confirmOverlay">
+    <div class="confirm-box">
+      <h3 id="confirmTitle">Are you sure?</h3>
+      <p id="confirmMessage">This action cannot be undone.</p>
+      <div class="confirm-actions">
+        <button class="btn btn-outline btn-sm" id="confirmCancel">Cancel</button>
+        <button class="btn btn-danger btn-sm" id="confirmOk">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       TOAST CONTAINER
+  ═════════════════════════════════════════════════════ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
