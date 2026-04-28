@@ -16,23 +16,6 @@
       ],
       "published": true,
       "featured": true
-    },
-    {
-      "id": "post-002",
-      "title": "Ethics in the Age of Artificial Intelligence",
-      "slug": "ethics-ai-age",
-      "excerpt": "As AI systems become embedded in governance, healthcare, and daily life, the ethical frameworks we need must evolve. ETHOS members reflect on the challenges ahead.",
-      "content": "## The Challenge of Machine Ethics\n\nArtificial intelligence is no longer a speculative technology. It shapes hiring decisions, legal outcomes, medical diagnoses, and the information we consume. Yet the ethical frameworks governing these systems remain nascent, contested, and often inadequate.\n\nFor those working at the intersection of ethics, politics, and technology â as many ETHOS members do â this is not an abstract concern. It is among the most pressing issues of our time.\n\n## Three Key Questions\n\n**1. Who is responsible when AI causes harm?**\n\nTraditional frameworks of responsibility â legal, moral, professional â assume a human agent who made a decision. When an algorithm denies a loan, misidentifies a suspect, or recommends a harmful treatment, the chain of responsibility becomes diffuse and contested.\n\n**2. What values should be embedded in AI systems?**\n\nThe design of any AI system involves choices: what to optimise for, what data to train on, what outputs to reward. These are not merely technical choices â they are value judgments that encode particular visions of justice, fairness, and the good.\n\n**3. How do we maintain democratic oversight?**\n\nThe speed of AI development often outpaces regulatory capacity. Meaningful democratic oversight requires not just legal frameworks, but an informed citizenry capable of understanding and challenging the systems that govern their lives.\n\n## The Role of Ethics Education\n\nThis is precisely where institutions like ETHOS matter. Training people not only to understand technology but to interrogate its moral dimensions â to ask *for whom*, *at what cost*, and *to what end* â is essential work.\n\n---\n\n*This article reflects the views of ETHOS contributors and does not represent any official institutional position.*",
-      "author": "ETHOS Editorial Team",
-      "date": "2025-11-15",
-      "category": "Insights",
-      "tags": [
-        "AI",
-        "digital ethics",
-        "governance"
-      ],
-      "published": true,
-      "featured": false
     }
   ]
 }
