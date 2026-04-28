@@ -1,15 +1,32 @@
 {
   "posts": [
     {
+      "id": "post-moin0bft",
+      "title": "Test Drive",
+      "slug": "test-drive",
+      "excerpt": "ciao",
+      "content": "ciao",
+      "author": "sforza",
+      "date": "2026-04-28",
+      "category": "Insights",
+      "tags": [],
+      "published": true,
+      "featured": false
+    },
+    {
       "id": "post-001",
       "title": "Launching the ETHOS Alumni Network",
       "slug": "launching-ethos-alumni-network",
-      "excerpt": "The ETHOS Alumni Network is now live — a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.",
-      "content": "## A Community Connected\n\nThe **ETHOS Alumni Network** is now live — a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.\n\nFounded by Professor Sebastiano Maffettone at LUISS Guido Carli, ETHOS has for years been a space for serious, rigorous thinking about the moral foundations of public life. The alumni network extends that mission beyond the university walls, keeping the conversation going across careers, cities, and continents.\n\n## What the Network Offers\n\nThe network provides:\n\n- A searchable **alumni directory** with members' expertise, interests, and contact information\n- A space to share **articles, research, and insights** from across the community\n- Updates on **events and opportunities** — debates, seminars, and collaborations\n- A channel for members to **reconnect and collaborate**\n\n## How to Join\n\nMembership is selective. If you have participated in ETHOS activities — as a student, intern, researcher, or Young ETHOS member — you are eligible to apply. Visit the [Applications](/join.html) page to learn more.\n\n---\n\nWe look forward to growing this community together.",
+      "excerpt": "The ETHOS Alumni Network is now live â a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.",
+      "content": "## A Community Connected\n\nThe **ETHOS Alumni Network** is now live â a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.\n\nFounded by Professor Sebastiano Maffettone at LUISS Guido Carli, ETHOS has for years been a space for serious, rigorous thinking about the moral foundations of public life. The alumni network extends that mission beyond the university walls, keeping the conversation going across careers, cities, and continents.\n\n## What the Network Offers\n\nThe network provides:\n\n- A searchable **alumni directory** with members' expertise, interests, and contact information\n- A space to share **articles, research, and insights** from across the community\n- Updates on **events and opportunities** â debates, seminars, and collaborations\n- A channel for members to **reconnect and collaborate**\n\n## How to Join\n\nMembership is selective. If you have participated in ETHOS activities â as a student, intern, researcher, or Young ETHOS member â you are eligible to apply. Visit the [Applications](/join.html) page to learn more.\n\n---\n\nWe look forward to growing this community together.",
       "author": "ETHOS Editorial Team",
       "date": "2025-11-01",
       "category": "Announcements",
-      "tags": ["network", "launch", "community"],
+      "tags": [
+        "network",
+        "launch",
+        "community"
+      ],
       "published": true,
       "featured": true
     },
@@ -18,11 +35,15 @@
       "title": "Ethics in the Age of Artificial Intelligence",
       "slug": "ethics-ai-age",
       "excerpt": "As AI systems become embedded in governance, healthcare, and daily life, the ethical frameworks we need must evolve. ETHOS members reflect on the challenges ahead.",
-      "content": "## The Challenge of Machine Ethics\n\nArtificial intelligence is no longer a speculative technology. It shapes hiring decisions, legal outcomes, medical diagnoses, and the information we consume. Yet the ethical frameworks governing these systems remain nascent, contested, and often inadequate.\n\nFor those working at the intersection of ethics, politics, and technology — as many ETHOS members do — this is not an abstract concern. It is among the most pressing issues of our time.\n\n## Three Key Questions\n\n**1. Who is responsible when AI causes harm?**\n\nTraditional frameworks of responsibility — legal, moral, professional — assume a human agent who made a decision. When an algorithm denies a loan, misidentifies a suspect, or recommends a harmful treatment, the chain of responsibility becomes diffuse and contested.\n\n**2. What values should be embedded in AI systems?**\n\nThe design of any AI system involves choices: what to optimise for, what data to train on, what outputs to reward. These are not merely technical choices — they are value judgments that encode particular visions of justice, fairness, and the good.\n\n**3. How do we maintain democratic oversight?**\n\nThe speed of AI development often outpaces regulatory capacity. Meaningful democratic oversight requires not just legal frameworks, but an informed citizenry capable of understanding and challenging the systems that govern their lives.\n\n## The Role of Ethics Education\n\nThis is precisely where institutions like ETHOS matter. Training people not only to understand technology but to interrogate its moral dimensions — to ask *for whom*, *at what cost*, and *to what end* — is essential work.\n\n---\n\n*This article reflects the views of ETHOS contributors and does not represent any official institutional position.*",
+      "content": "## The Challenge of Machine Ethics\n\nArtificial intelligence is no longer a speculative technology. It shapes hiring decisions, legal outcomes, medical diagnoses, and the information we consume. Yet the ethical frameworks governing these systems remain nascent, contested, and often inadequate.\n\nFor those working at the intersection of ethics, politics, and technology â as many ETHOS members do â this is not an abstract concern. It is among the most pressing issues of our time.\n\n## Three Key Questions\n\n**1. Who is responsible when AI causes harm?**\n\nTraditional frameworks of responsibility â legal, moral, professional â assume a human agent who made a decision. When an algorithm denies a loan, misidentifies a suspect, or recommends a harmful treatment, the chain of responsibility becomes diffuse and contested.\n\n**2. What values should be embedded in AI systems?**\n\nThe design of any AI system involves choices: what to optimise for, what data to train on, what outputs to reward. These are not merely technical choices â they are value judgments that encode particular visions of justice, fairness, and the good.\n\n**3. How do we maintain democratic oversight?**\n\nThe speed of AI development often outpaces regulatory capacity. Meaningful democratic oversight requires not just legal frameworks, but an informed citizenry capable of understanding and challenging the systems that govern their lives.\n\n## The Role of Ethics Education\n\nThis is precisely where institutions like ETHOS matter. Training people not only to understand technology but to interrogate its moral dimensions â to ask *for whom*, *at what cost*, and *to what end* â is essential work.\n\n---\n\n*This article reflects the views of ETHOS contributors and does not represent any official institutional position.*",
       "author": "ETHOS Editorial Team",
       "date": "2025-11-15",
       "category": "Insights",
-      "tags": ["AI", "digital ethics", "governance"],
+      "tags": [
+        "AI",
+        "digital ethics",
+        "governance"
+      ],
       "published": true,
       "featured": false
     },
@@ -30,12 +51,16 @@
       "id": "post-003",
       "title": "Word Wars: Format & Philosophy",
       "slug": "word-wars-format-philosophy",
-      "excerpt": "ETHOS's flagship debate format — Word Wars — is designed not to crown a winner, but to model what serious public disagreement looks like.",
-      "content": "## A Different Kind of Debate\n\nMost public debates are not really debates. They are performances of certainty — opportunities to score points, demolish opponents, and confirm the views of one's own side.\n\n**Word Wars** is designed around a different premise: that honest disagreement, conducted with rigour and good faith, is intrinsically valuable.\n\n## The Format\n\nWord Wars brings together participants with genuinely different views on contested ethical and political questions. The format encourages:\n\n- **Steelmanning** — presenting the strongest version of the opposing argument before critiquing it\n- **Honest uncertainty** — acknowledging the limits of one's own position\n- **Productive disagreement** — identifying precisely where and why participants diverge\n\nThe goal is not consensus. It is clarity: a shared understanding of *why* reasonable people disagree.\n\n## Coming Soon\n\nThe next edition of Word Wars is in preparation. Details on the topic, participants, and venue will be announced on this site and through the ETHOS channels.\n\nFollow us on Instagram [@youngethos](https://instagram.com/youngethos) for updates.",
+      "excerpt": "ETHOS's flagship debate format â Word Wars â is designed not to crown a winner, but to model what serious public disagreement looks like.",
+      "content": "## A Different Kind of Debate\n\nMost public debates are not really debates. They are performances of certainty â opportunities to score points, demolish opponents, and confirm the views of one's own side.\n\n**Word Wars** is designed around a different premise: that honest disagreement, conducted with rigour and good faith, is intrinsically valuable.\n\n## The Format\n\nWord Wars brings together participants with genuinely different views on contested ethical and political questions. The format encourages:\n\n- **Steelmanning** â presenting the strongest version of the opposing argument before critiquing it\n- **Honest uncertainty** â acknowledging the limits of one's own position\n- **Productive disagreement** â identifying precisely where and why participants diverge\n\nThe goal is not consensus. It is clarity: a shared understanding of *why* reasonable people disagree.\n\n## Coming Soon\n\nThe next edition of Word Wars is in preparation. Details on the topic, participants, and venue will be announced on this site and through the ETHOS channels.\n\nFollow us on Instagram [@youngethos](https://instagram.com/youngethos) for updates.",
       "author": "Young ETHOS Team",
       "date": "2025-12-01",
       "category": "Events",
-      "tags": ["events", "debate", "Word Wars"],
+      "tags": [
+        "events",
+        "debate",
+        "Word Wars"
+      ],
       "published": true,
       "featured": false
     }
