@@ -1,21 +1,3 @@
 {
-  "posts": [
-    {
-      "id": "post-001",
-      "title": "Launching the ETHOS Alumni Network",
-      "slug": "launching-ethos-alumni-network",
-      "excerpt": "The ETHOS Alumni Network is now live â a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.",
-      "content": "## A Community Connected\n\nThe **ETHOS Alumni Network** is now live â a digital home for the community of students, researchers, and collaborators who have shaped the Observatory's history.\n\nFounded by Professor Sebastiano Maffettone at LUISS Guido Carli, ETHOS has for years been a space for serious, rigorous thinking about the moral foundations of public life. The alumni network extends that mission beyond the university walls, keeping the conversation going across careers, cities, and continents.\n\n## What the Network Offers\n\nThe network provides:\n\n- A searchable **alumni directory** with members' expertise, interests, and contact information\n- A space to share **articles, research, and insights** from across the community\n- Updates on **events and opportunities** â debates, seminars, and collaborations\n- A channel for members to **reconnect and collaborate**\n\n## How to Join\n\nMembership is selective. If you have participated in ETHOS activities â as a student, intern, researcher, or Young ETHOS member â you are eligible to apply. Visit the [Applications](/join.html) page to learn more.\n\n---\n\nWe look forward to growing this community together.",
-      "author": "ETHOS Editorial Team",
-      "date": "2025-11-01",
-      "category": "Announcements",
-      "tags": [
-        "network",
-        "launch",
-        "community"
-      ],
-      "published": true,
-      "featured": true
-    }
-  ]
+  "posts": []
 }
