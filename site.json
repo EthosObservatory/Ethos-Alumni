@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "eyebrow": "LUISS Guido Carli, Rome",
+    "title": "The ETHOS Alumni Network",
+    "subtitle": "A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance."
+  },
+  "about": {
+    "body": "**ETHOS** is an observatory on public ethics founded by **Sebastiano Maffettone** at LUISS Guido Carli University in Rome. The Alumni Network brings together the *ETHOS people* & students, *i ragazzi di Young ETHOS*, alumni, and collaborators, with the goal of maintaining connections and creating long-term value and social capital.\n\nMembers come from diverse academic and professional backgrounds, from political philosophy and international relations to AI ethics, sustainability, and business ethics, united by a shared commitment to rigorous thinking about the public good.",
+    "link_label": "Watch Prof. Maffettone's interview with the ETHOS people!",
+    "link_url": "https://www.youtube.com/watch?v=uS2Qwa1p0yU"
+  },
+  "sections": [],
+  "events": [],
+  "footer": {
+    "org_name": "ETHOS Alumni Network",
+    "org_desc": "Observatory on Public Ethics\nLUISS Guido Carli University – Rome, Italy",
+    "copyright": "© 2025 ETHOS Alumni Network",
+    "contacts": [
+      { "label": "ethos.observatory@outlook.it", "href": "mailto:ethos.observatory@outlook.it" },
+      { "label": "ethos@luiss.it", "href": "mailto:ethos@luiss.it" },
+      { "label": "Privacy & GDPR", "href": "privacy.html" }
+    ],
+    "social": [
+      { "platform": "Instagram", "label": "@youngethos", "url": "https://instagram.com/youngethos" }
+    ]
+  },
+  "meta": {
+    "site_title": "ETHOS Alumni Network",
+    "description": "ETHOS Alumni Network – LUISS Guido Carli: a selective community of students, alumni, and collaborators engaged in public ethics, philosophy, and governance.",
+    "analytics_id": "",
+    "application_form_url": "https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAMAAaHq_UBUNldXRTg4QjFJSDYwU0o0SVFKRUhaQThNVy4u"
+  }
+}

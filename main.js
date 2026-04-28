@@ -15,6 +15,125 @@ function formatDate(dateStr) {
   } catch { return dateStr; }
 }
 
+function markdownToHtml(md) {
+  if (!md) return '';
+  let html = md
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/^#{3}\s(.+)/gm, '<h3>$1</h3>')
+    .replace(/^#{2}\s(.+)/gm, '<h2>$1</h2>')
+    .replace(/^#{1}\s(.+)/gm, '<h1>$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/`(.+?)`/g, '<code>$1</code>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/^-{3,}$/gm, '<hr>')
+    .replace(/^>\s(.+)/gm, '<blockquote>$1</blockquote>')
+    .replace(/^[-*]\s(.+)/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+    .replace(/\n\n/g, '</p><p>')
+    .replace(/\n/g, '<br>');
+  return `<p>${html}</p>`
+    .replace(/<p>(<h[1-6]>)/g, '$1').replace(/(<\/h[1-6]>)<\/p>/g, '$1')
+    .replace(/<p>(<ul>)/g, '$1').replace(/(<\/ul>)<\/p>/g, '$1')
+    .replace(/<p>(<blockquote>)/g, '$1').replace(/(<\/blockquote>)<\/p>/g, '$1')
+    .replace(/<p>(<hr>)<\/p>/g, '$1').replace(/<p><\/p>/g, '');
+}
+
+// ─── Site config ─────────────────────────────────────────
+
+async function loadSiteConfig() {
+  try {
+    const res = await fetch('site.json', { cache: 'no-store' });
+    return await res.json();
+  } catch { return {}; }
+}
+
+function applySiteConfig(cfg) {
+  const hero  = cfg.hero  || {};
+  const about = cfg.about || {};
+
+  const eyebrow   = document.getElementById('heroEyebrow');
+  const title     = document.getElementById('heroTitle');
+  const subtitle  = document.getElementById('heroSubtitle');
+  const aboutBody = document.getElementById('aboutBody');
+
+  if (eyebrow  && hero.eyebrow)   eyebrow.textContent  = hero.eyebrow;
+  if (title    && hero.title)     title.textContent     = hero.title;
+  if (subtitle && hero.subtitle)  subtitle.textContent  = hero.subtitle;
+
+  if (aboutBody) {
+    let html = markdownToHtml(about.body || '');
+    if (about.link_url && about.link_label) {
+      html += `<p><a href="${about.link_url}" target="_blank" rel="noopener">${about.link_label}</a></p>`;
+    }
+    aboutBody.innerHTML = html;
+  }
+
+  renderCustomSections(cfg.sections || []);
+  renderEvents(cfg.events || []);
+}
+
+function renderEvents(events) {
+  const section = document.getElementById('eventsSection');
+  if (!section) return;
+  if (!events.length) { section.style.display = 'none'; return; }
+
+  const now = new Date();
+  const upcoming = events
+    .filter(e => !e.date || new Date(e.date) >= now)
+    .sort((a, b) => new Date(a.date) - new Date(b.date));
+  const past = events
+    .filter(e => e.date && new Date(e.date) < now)
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sorted = [...upcoming, ...past];
+
+  section.style.display = '';
+  const listEl = document.getElementById('eventsList');
+  if (!listEl) return;
+
+  listEl.innerHTML = sorted.map(e => {
+    const isPast = e.date && new Date(e.date) < now;
+    const dateStr = e.date ? formatDate(e.date) : '';
+    const badge = isPast
+      ? `<span class="event-badge event-badge-past">Past</span>`
+      : `<span class="event-badge event-badge-upcoming">Upcoming</span>`;
+    const cta = (e.link_url && e.link_label)
+      ? `<a class="btn btn-outline btn-sm" href="${e.link_url}" target="_blank" rel="noopener">${e.link_label}</a>`
+      : '';
+    return `
+      <div class="event-card${isPast ? ' event-card-past' : ''}">
+        <div class="event-card-meta">
+          ${badge}
+          ${dateStr ? `<span class="event-date">${dateStr}${e.time ? ' · ' + e.time : ''}</span>` : ''}
+          ${e.location ? `<span class="event-location"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${e.location}</span>` : ''}
+        </div>
+        <div class="event-title">${e.title}</div>
+        ${e.description ? `<p class="event-desc">${e.description}</p>` : ''}
+        ${cta}
+      </div>`;
+  }).join('');
+}
+
+function renderCustomSections(sections) {
+  const container = document.getElementById('customSections');
+  if (!container) return;
+
+  container.innerHTML = sections.map(s => {
+    const bodyHtml = markdownToHtml(s.body || '');
+    const cta = (s.link_url && s.link_label)
+      ? `<p style="margin-top:20px"><a class="btn btn-outline" href="${s.link_url}">${s.link_label}</a></p>`
+      : '';
+    return `
+      <section style="border-top:1px solid var(--border)">
+        <div class="container">
+          ${s.label ? `<div class="section-label">${s.label}</div>` : ''}
+          <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin-bottom:20px">${s.title}</h2>
+          <div class="about-text">${bodyHtml}${cta}</div>
+        </div>
+      </section>`;
+  }).join('');
+}
+
 // ─── Members ─────────────────────────────────────────────
 
 async function loadMembers() {

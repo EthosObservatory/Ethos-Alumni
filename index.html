@@ -13,7 +13,7 @@
   <header class="site-header">
     <div class="container nav">
       <a class="brand" href="index.html">
-        <span class="logo">ETHOS<span class="logo-dot"></span></span>
+        <div class="logo-wrap"><img src="ethos-logo.svg" alt="ETHOS" class="site-logo" /></div>
         <span class="brand-sub">Observatory on Public Ethics</span>
       </a>
       <nav class="nav-links" id="navLinks">
@@ -87,6 +87,24 @@
       </div>
     </div>
   </section>
+
+  <!-- ─── Custom Sections ─────────────────────────────────── -->
+  <div id="customSections"></div>
+
+  <!-- ─── Events ────────────────────────────────────────── -->
+  <div id="eventsSection" style="display:none">
+    <section style="border-top:1px solid var(--border)" id="events">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-label">Events</div>
+            <h2>Upcoming Events</h2>
+          </div>
+        </div>
+        <div class="events-grid" id="eventsList"></div>
+      </div>
+    </section>
+  </div>
 
   <!-- ─── Latest Articles ──────────────────────────────── -->
   <section id="articles" style="border-top: 1px solid var(--border);">

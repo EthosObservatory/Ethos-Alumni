@@ -80,6 +80,11 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
           Areas & Tags
         </button>
+        <button class="sidebar-item" data-panel="events">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Events
+          <span class="sidebar-count" id="sidebarEventCount">0</span>
+        </button>
 
         <div class="sidebar-label">Settings</div>
         <button class="sidebar-item" data-panel="settings">
@@ -200,6 +205,82 @@
                 <tr><td colspan="3" style="color:var(--text-3);padding:24px">Loading…</td></tr>
               </tbody>
             </table>
+          </div>
+        </div>
+
+        <!-- ── Events ───────────────────────────────────── -->
+        <div class="admin-panel" id="panelEvents">
+          <div class="panel-header">
+            <h2>Events</h2>
+            <button class="btn btn-primary btn-sm" id="newEventBtn">+ New Event</button>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Title</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="eventsTableBody">
+                <tr><td colspan="5" style="color:var(--text-3);padding:24px">Loading…</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── Homepage ─────────────────────────────────── -->
+        <div class="admin-panel" id="panelHomepage">
+          <div class="panel-header">
+            <h2>Homepage Content</h2>
+            <button class="btn btn-primary btn-sm" id="saveHomepageBtn">Save & Publish</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Hero Section</h3>
+            <div class="form-group">
+              <label class="form-label">Eyebrow Label <span style="color:var(--text-3);font-weight:400">(small text above title)</span></label>
+              <input type="text" id="heroEyebrowInput" placeholder="LUISS Guido Carli · Rome" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Main Title</label>
+              <input type="text" id="heroTitleInput" placeholder="The ETHOS Alumni Network" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subtitle</label>
+              <textarea id="heroSubtitleInput" rows="3" placeholder="A selective community of…"></textarea>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>About Section</h3>
+            <p>Supports <code>**bold**</code>, <code>*italic*</code>, <code>[link text](url)</code>, and blank lines for new paragraphs.</p>
+            <div class="form-group">
+              <label class="form-label">About Text</label>
+              <textarea id="aboutBodyInput" rows="8" placeholder="Write about ETHOS here…"></textarea>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Link Label <span style="color:var(--text-3);font-weight:400">(optional)</span></label>
+                <input type="text" id="aboutLinkLabelInput" placeholder="Watch the interview →" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Link URL</label>
+                <input type="url" id="aboutLinkUrlInput" placeholder="https://…" />
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <h3 style="margin:0">Custom Sections</h3>
+              <button class="btn btn-outline btn-sm" id="newSectionBtn">+ Add Section</button>
+            </div>
+            <p style="margin-bottom:14px">Custom content blocks that appear on the homepage between the About section and the Articles section. Supports full Markdown and optional CTA buttons.</p>
+            <div id="sectionsListAdmin"></div>
           </div>
         </div>
 
