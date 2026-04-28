@@ -1,19 +1,6 @@
 {
   "posts": [
     {
-      "id": "post-moin0bft",
-      "title": "Test Drive",
-      "slug": "test-drive",
-      "excerpt": "ciao",
-      "content": "ciao",
-      "author": "sforza",
-      "date": "2026-04-28",
-      "category": "Insights",
-      "tags": [],
-      "published": true,
-      "featured": false
-    },
-    {
       "id": "post-001",
       "title": "Launching the ETHOS Alumni Network",
       "slug": "launching-ethos-alumni-network",
