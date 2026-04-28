@@ -4,16 +4,14 @@
       "name": "Prof. Sebastiano Maffettone",
       "roles": [
         "Founding Director, ETHOS",
-        "Professor, LUISS Guido Carli University" 
+        "Professor, LUISS Guido Carli University"
       ],
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University"
       ],
       "location": "Rome, Italy",
-
       "education": [],
-
       "expertise": [
         "Political Philosophy",
         "Digital Ethics",
@@ -24,20 +22,16 @@
         "Globalisation"
       ],
       "interests": [],
-
       "emails": [
         "maffettone@gmail.com"
       ],
       "phones": [],
-
       "linkedin_profiles": [
         "https://www.linkedin.com/in/sebastiano-maffettone-12268a1a0/"
       ],
-
       "links": [],
       "works": []
     },
-
     {
       "name": "Camilla Dacrema",
       "roles": [
@@ -49,9 +43,7 @@
         "Università Vita - Salute San Raffaele"
       ],
       "location": "Rome, Italy",
-
       "education": [],
-
       "expertise": [
         "Political Philosophy",
         "Digital Ethics",
@@ -62,43 +54,34 @@
         "Information Ethics",
         "Food and Agriculture Ethics"
       ],
-
       "emails": [
         "cdacrema@luiss.it"
       ],
       "phones": [],
-
       "linkedin_profiles": [
         "https://www.linkedin.com/in/camilla-dacrema-957a89ba/"
       ],
-
       "links": [],
       "works": []
     },
-
     {
       "name": "Roberto Sforza",
-
       "roles": [
         "Political Philosophy Research & Project Intern, ETHOS",
         "Joint Coordinator, Young ETHOS"
       ],
-
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University",
         "Sciences Po Bordeaux",
-		"EU Strategy"
+        "EU Strategy"
       ],
-
       "location": "Rome, Italy",
-
       "education": [
         "BA in Politics: Philosophy and Economics – LUISS Guido Carli",
         "BA in Études Politiques – Sciences Po Bordeaux",
         "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
       ],
-
       "expertise": [
         "International Relations",
         "Political Philosophy",
@@ -106,77 +89,60 @@
         "Artificial Intelligence",
         "Music & Literature"
       ],
-
       "interests": [
         "Multiculturalism & Migration",
-		"International Security",
+        "International Security",
         "Globalisation",
         "Religion & Theology",
         "Arts & Cultural Ethics"
       ],
-
       "emails": [
         "roberto.o.l.sforza@gmail.com"
       ],
-
       "phones": [],
-
       "linkedin_profiles": [
         "https://www.linkedin.com/in/roberto-sforza-ab112526b/"
       ],
-
       "links": [],
       "works": []
     },
-
     {
       "name": "Alessandro Jean-Baptiste Franco Bruneau",
-
       "roles": [
         "Political Philosophy Research & Project Intern, ETHOS",
         "Joint Coordinator, Young ETHOS"
       ],
-
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University",
         "Sciences Po Bordeaux"
       ],
-
       "location": "Rome, Italy",
-
       "education": [
         "BA in Politics: Philosophy and Economics – LUISS Guido Carli",
         "BA in Études Politiques – Sciences Po Bordeaux",
         "MSc in Global Management and Politics – LUISS Guido Carli (in progress)"
       ],
-
       "expertise": [
         "International Relations",
         "Artificial Intelligence",
         "Economic Intelligence"
       ],
-
       "interests": [
         "Political Philosophy",
         "Globalisation",
         "Digital Ethics"
       ],
-
       "emails": [
         "alessandro.bruneau@gmail.com"
       ],
-
       "phones": [],
-
       "linkedin_profiles": [
         "https://www.linkedin.com/in/alessandro-bruneau-48220b294/"
       ],
-
       "links": [],
       "works": []
     },
-
     {
       "name": "Flavio Illuzzi",
       "roles": [
@@ -187,9 +153,7 @@
         "LUISS Guido Carli University"
       ],
       "location": "Rome, Italy",
-
       "education": [],
-
       "expertise": [
         "Economics & Management",
         "Artificial Intelligence",
@@ -198,233 +162,174 @@
         "Sustainability",
         "Religion & Theology"
       ],
-      
       "interests": [
         "Political Philosophy",
         "Ethics of Disability"
       ],
-
       "emails": [
         "flavioilluzziroma@gmail.com",
         "filluzzi@luiss.it"
       ],
       "phones": [],
-
       "linkedin_profiles": [],
-
       "links": [],
       "works": []
     },
-
     {
       "name": "Domenico Melidoro",
-
       "roles": [
         "Tenure-Track Researcher in Political Philosophy, Universitas Mercatorum",
         "Executive Committee Member, ETHOS"
       ],
-
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University",
         "Universitas Mercatorum"
       ],
-
       "location": "Rome, Italy",
-
       "education": [],
-
       "expertise": [
         "Political Philosophy",
         "Multiculturalism & Migration"
       ],
-
       "interests": [
         "Political Philosophy",
         "Multiculturalism & Migration"
       ],
-
       "emails": [
         "domenico.melidoro@gmail.com"
       ],
-
       "phones": [],
-
       "linkedin_profiles": [],
-
       "links": [],
       "works": []
-    },    
-
+    },
     {
-		  "name": "Greta Colaneri",
-
-		  "roles": [
-		    "Intern, ETHOS"
-		  ],
-
-		  "affiliations": [
-		    "ETHOS",
-		    "LUISS Guido Carli University"
-		  ],
-
-		  "location": "Rome, Italy",
-
-		  "education": [
-		    "BA in Politics: Philosophy and Economics – LUISS Guido Carli",
-		    "MSc in International Relations (Major: Security) – LUISS Guido Carli"
-		  ],
-
-		  "expertise": [
-		    "International Relations",
-		    "Artificial Intelligence",
-		    "International Security"
-		  ],
-
-		  "interests": [
-		    "International Relations",
-		    "Artificial Intelligence",
-		    "International Security"
-		  ],
-
-		  "emails": [
-		    "greta.colaneri@studenti.luiss.it"
-		  ],
-
-		  "phones": [],
-
-		  "linkedin_profiles": [
-		    "https://www.linkedin.com/in/greta-colaneri-7498a7295"
-		  ],
-
-		  "links": [],
-
-		  "works": []
-		},
-
-	{
-		  "name": "Taymour Elmasry",
-
-		  "roles": [
-		    "Policy Officer, European Commission",
-		    "Former Founding Member, Young ETHOS"
-		  ],
-
-		  "affiliations": [
-		    "European Commission"
-		  ],
-
-		  "location": "Brussels, Belgium",
-
-		  "education": [
-		    "MA in EU International Relations and Diplomacy Studies – College of Europe (Bruges, Belgium)",
-		    "MA in Policies and Governance in Europe – King's College London (London, United Kingdom)",
-		    "MA in Policies and Governance in Europe – LUISS Guido Carli (Rome, Italy)",
-		    "BA in Political Science – LUISS Guido Carli (Rome, Italy)"
-		  ],
-
-		  "expertise": [
-		    "International Relations",
-		    "Globalisation"
-		  ],
-
-		  "interests": [
-		    "Political Philosophy",
-		    "International Relations",
-		    "Globalisation",
-		    "Sustainability",
-		    "Information Ethics",
-		    "Music & Literature"
-		  ],
-
-		  "emails": [
-		    "taymour.elmasry@coleurope.eu"
-		  ],
-
-		  "phones": [],
-
-		  "linkedin_profiles": [],
-
-		  "links": [],
-
-		  "works": []
-		},
-
-	{
-		  "name": "Anita Dell'Aglio",
-
-		  "roles": [
-		    "Collaborator, Young ETHOS"
-		  ],
-
-		  "affiliations": [
-		    "ETHOS",
-		    "LUISS Guido Carli University"
-		  ],
-
-		  "location": "Rome, Italy",
-
-		  "education": [
-		    "BA in Politics, Philosophy and Economics – LUISS Guido Carli"
-		  ],
-
-		  "expertise": [
-		    "International Relations",
-		    "Political Philosophy"
-		  ],
-
-		  "interests": [
-		    "International Relations",
-		    "Political Philosophy",
-		    "International Security",
-		    "Globalisation",
-		    "Artificial Intelligence",
-		    "Multiculturalism & Migration",
-		    "Music & Literature",
-		    "Information Ethics"
-		  ],
-
-		  "emails": [
-			  "anita.dellaglio25@gmail.com"
-		  ],
-
-		  "phones": [],
-
-		  "linkedin_profiles": [
-			  "https://www.linkedin.com/in/anita-dell’aglio-57894b349/"
-		  ],
-
-		  "links": [],
-
-		  "works": []
-		},
-
-    
-    {
-      "name": "Matteo Russell",
-
+      "name": "Greta Colaneri",
       "roles": [
-        "History Assistant Teacher, San Diego",
-        "Member, Young ETHOS"
+        "Intern, ETHOS"
       ],
-
       "affiliations": [
         "ETHOS",
         "LUISS Guido Carli University"
       ],
-
+      "location": "Rome, Italy",
+      "education": [
+        "BA in Politics: Philosophy and Economics – LUISS Guido Carli",
+        "MSc in International Relations (Major: Security) – LUISS Guido Carli"
+      ],
+      "expertise": [
+        "International Relations",
+        "Artificial Intelligence",
+        "International Security"
+      ],
+      "interests": [
+        "International Relations",
+        "Artificial Intelligence",
+        "International Security"
+      ],
+      "emails": [
+        "greta.colaneri@studenti.luiss.it"
+      ],
+      "phones": [],
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/greta-colaneri-7498a7295"
+      ],
+      "links": [],
+      "works": []
+    },
+    {
+      "name": "Taymour Elmasry",
+      "roles": [
+        "Policy Officer, European Commission",
+        "Former Founding Member, Young ETHOS"
+      ],
+      "affiliations": [
+        "European Commission"
+      ],
+      "location": "Brussels, Belgium",
+      "education": [
+        "MA in EU International Relations and Diplomacy Studies – College of Europe (Bruges, Belgium)",
+        "MA in Policies and Governance in Europe – King's College London (London, United Kingdom)",
+        "MA in Policies and Governance in Europe – LUISS Guido Carli (Rome, Italy)",
+        "BA in Political Science – LUISS Guido Carli (Rome, Italy)"
+      ],
+      "expertise": [
+        "International Relations",
+        "Globalisation"
+      ],
+      "interests": [
+        "Political Philosophy",
+        "International Relations",
+        "Globalisation",
+        "Sustainability",
+        "Information Ethics",
+        "Music & Literature"
+      ],
+      "emails": [
+        "taymour.elmasry@coleurope.eu"
+      ],
+      "phones": [],
+      "linkedin_profiles": [],
+      "links": [],
+      "works": []
+    },
+    {
+      "name": "Anita Dell'Aglio",
+      "roles": [
+        "Collaborator, Young ETHOS"
+      ],
+      "affiliations": [
+        "ETHOS",
+        "LUISS Guido Carli University"
+      ],
+      "location": "Rome, Italy",
+      "education": [
+        "BA in Politics, Philosophy and Economics – LUISS Guido Carli"
+      ],
+      "expertise": [
+        "International Relations",
+        "Political Philosophy"
+      ],
+      "interests": [
+        "International Relations",
+        "Political Philosophy",
+        "International Security",
+        "Globalisation",
+        "Artificial Intelligence",
+        "Multiculturalism & Migration",
+        "Music & Literature",
+        "Information Ethics"
+      ],
+      "emails": [
+        "anita.dellaglio25@gmail.com"
+      ],
+      "phones": [],
+      "linkedin_profiles": [
+        "https://www.linkedin.com/in/anita-dell’aglio-57894b349/"
+      ],
+      "links": [],
+      "works": []
+    },
+    {
+      "name": "Matteo Russell",
+      "roles": [
+        "History Assistant Teacher, San Diego",
+        "Member, Young ETHOS"
+      ],
+      "affiliations": [
+        "ETHOS",
+        "LUISS Guido Carli University"
+      ],
       "location": "San Diego, California",
-
       "education": [
         "BA in Politics: Philosophy and Economics – LUISS Guido Carli"
       ],
-
       "expertise": [
         "Political Philosophy",
         "International Relations",
         "Religion and Theology"
       ],
-
       "interests": [
         "Political Philosophy",
         "International Relations",
@@ -432,23 +337,44 @@
         "Globalisation",
         "Arts & Cultural Ethics"
       ],
-
       "emails": [
         "russell.matteo04@gmail.com"
       ],
-
       "phones": [],
-
       "linkedin_profiles": [
         "https://www.linkedin.com/in/matteo-russell-718924296?utm_source=share_via&utm_content=profile&utm_medium=member_android"
       ],
-
+      "links": [],
+      "works": []
+    },
+    {
+      "name": "Sempronio Rossi",
+      "roles": [
+        "Test Dummy"
+      ],
+      "affiliations": [
+        "Failed Attempts"
+      ],
+      "location": "Rome, Italy",
+      "education": [
+        "PhD in Miserableness"
+      ],
+      "expertise": [
+        "Trials",
+        "Test Runs",
+        "Failed Attempts"
+      ],
+      "interests": [
+        "Failure and Resilience",
+        "Get up and go fail again"
+      ],
+      "emails": [
+        "stestdummy@gmail.com"
+      ],
+      "phones": [],
+      "linkedin_profiles": [],
       "links": [],
       "works": []
     }
-
-    
-
-    
   ]
 }
