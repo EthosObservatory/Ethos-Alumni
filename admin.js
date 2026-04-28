@@ -17,9 +17,10 @@ const ADMIN_HASH  = '29ca0d3b74b07e19d0a9557976d21d79b473723ddd8892e8a1adac9b9f6
 
 // ─── State ────────────────────────────────────────────────
 const State = {
-  members: [],
-  posts:   [],
-  token:   '',
+  members:    [],
+  posts:      [],
+  siteConfig: {},
+  token:      '',
   get isConnected() { return !!this.token; }
 };
 
@@ -173,18 +174,68 @@ const Admin = {
 
   _postsSha:   null,
   _membersSha: null,
+  _siteSha:    null,
 
   // ── Init ──────────────────────────────────────────────
   async init() {
-    await Promise.all([this.loadPosts(), this.loadMembers()]);
+    await Promise.all([this.loadPosts(), this.loadMembers(), this.loadSiteConfig()]);
     this.updateDashboard();
     this.renderPostsTable();
     this.renderMembersTable();
     this.renderAreasTable();
+    this.populateHomepageForm();
     this.checkTokenStatus();
     document.getElementById('currentHashDisplay').textContent = ADMIN_HASH.slice(0, 20) + '…';
     const savedToken = localStorage.getItem('ethos_admin_token');
     if (savedToken) document.getElementById('settingsToken').value = savedToken;
+  },
+
+  // ── Site config ───────────────────────────────────────
+  async loadSiteConfig() {
+    try {
+      const { content, sha } = await GitHub.getFile('site.json');
+      State.siteConfig = content;
+      this._siteSha = sha;
+    } catch {
+      try {
+        const r = await fetch('site.json', { cache: 'no-store' });
+        State.siteConfig = await r.json();
+      } catch { State.siteConfig = {}; }
+    }
+  },
+
+  populateHomepageForm() {
+    const cfg = State.siteConfig;
+    document.getElementById('heroEyebrowInput').value   = cfg.hero?.eyebrow   || '';
+    document.getElementById('heroTitleInput').value     = cfg.hero?.title     || '';
+    document.getElementById('heroSubtitleInput').value  = cfg.hero?.subtitle  || '';
+    document.getElementById('aboutBodyInput').value     = cfg.about?.body     || '';
+    document.getElementById('aboutLinkLabelInput').value = cfg.about?.link_label || '';
+    document.getElementById('aboutLinkUrlInput').value   = cfg.about?.link_url   || '';
+  },
+
+  async saveHomepage() {
+    State.siteConfig = {
+      hero: {
+        eyebrow:  document.getElementById('heroEyebrowInput').value.trim(),
+        title:    document.getElementById('heroTitleInput').value.trim(),
+        subtitle: document.getElementById('heroSubtitleInput').value.trim()
+      },
+      about: {
+        body:       document.getElementById('aboutBodyInput').value,
+        link_label: document.getElementById('aboutLinkLabelInput').value.trim(),
+        link_url:   document.getElementById('aboutLinkUrlInput').value.trim()
+      }
+    };
+
+    if (!State.token) { toast('No GitHub token — cannot publish', 'error'); return; }
+    try {
+      const res = await GitHub.putFile('site.json', State.siteConfig, this._siteSha, 'admin: update site.json');
+      this._siteSha = res.content.sha;
+      toast('Homepage updated and published!');
+    } catch (e) {
+      toast('Save failed: ' + e.message, 'error');
+    }
   },
 
   // ── Data loading ──────────────────────────────────────
@@ -653,6 +704,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('memberModal').classList.add('hidden');
     }
   });
+
+  // Homepage save
+  document.getElementById('saveHomepageBtn').addEventListener('click', () => Admin.saveHomepage());
 
   // Settings: token
   document.getElementById('saveTokenBtn').addEventListener('click', () => {

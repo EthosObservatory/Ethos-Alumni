@@ -20,7 +20,6 @@
         <a href="index.html" class="active">Home</a>
         <a href="#directory">Members</a>
         <a href="posts.html">Articles</a>
-        <a href="#events">Events</a>
         <a href="join.html" class="nav-cta">Apply</a>
       </nav>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
@@ -34,11 +33,9 @@
   <!-- ─── Hero ────────────────────────────────────────── -->
   <section class="hero">
     <div class="container">
-      <div class="hero-eyebrow">LUISS Guido Carli · Rome</div>
-      <h1>The <em>ETHOS</em><br>Alumni Network</h1>
-      <p class="hero-sub">
-        A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance.
-      </p>
+      <div class="hero-eyebrow" id="heroEyebrow">LUISS Guido Carli · Rome</div>
+      <h1 id="heroTitle">The ETHOS Alumni Network</h1>
+      <p class="hero-sub" id="heroSubtitle">A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance.</p>
       <div class="hero-cta">
         <a class="btn btn-primary btn-lg" href="join.html">Apply for membership</a>
         <a class="btn btn-outline btn-lg" href="#directory">Explore the directory</a>
@@ -48,14 +45,6 @@
           <div class="hero-stat-value" id="statMembers">—</div>
           <div class="hero-stat-label">Alumni members</div>
         </div>
-        <div>
-          <div class="hero-stat-value">10+</div>
-          <div class="hero-stat-label">Countries represented</div>
-        </div>
-        <div>
-          <div class="hero-stat-value">20+</div>
-          <div class="hero-stat-label">Fields of expertise</div>
-        </div>
       </div>
     </div>
   </section>
@@ -64,25 +53,9 @@
   <section id="about">
     <div class="container">
       <div class="section-label">About ETHOS</div>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>
-            <strong>ETHOS</strong> is an observatory on public ethics founded by <strong>Sebastiano Maffettone</strong> at LUISS Guido Carli University in Rome. The Alumni Network brings together the <em>ETHOS people</em> — students, <em>i ragazzi di Young ETHOS</em>, alumni, and collaborators — with the goal of maintaining connections and creating long-term value and social capital.
-          </p>
-          <p>
-            Members come from diverse academic and professional backgrounds — from political philosophy and international relations to AI ethics, sustainability, and business ethics — united by a shared commitment to rigorous thinking about the public good.
-          </p>
-          <p>
-            <a href="https://www.youtube.com/watch?v=uS2Qwa1p0yU" target="_blank" rel="noopener">
-              Watch Prof. Maffettone's interview with the ETHOS people →
-            </a>
-          </p>
-        </div>
-        <div class="about-quote">
-          <blockquote>
-            "Ethics is not merely an academic discipline — it is a civic obligation. The ETHOS network exists to keep that obligation alive across careers, borders, and generations."
-          </blockquote>
-          <cite>Prof. Sebastiano Maffettone, Founding Director</cite>
+      <div class="about-grid" style="grid-template-columns:1fr">
+        <div class="about-text" id="aboutBody">
+          <!-- rendered from site.json -->
         </div>
       </div>
     </div>
@@ -121,56 +94,13 @@
           </div>
           <select id="areaFilter">
             <option value="">All areas</option>
-            <option>Political Philosophy</option>
-            <option>International Relations</option>
-            <option>International Security</option>
-            <option>Business Ethics</option>
-            <option>Digital Ethics</option>
-            <option>Artificial Intelligence</option>
-            <option>Economics & Management</option>
-            <option>Globalisation</option>
-            <option>Identity Politics</option>
-            <option>Multiculturalism & Migration</option>
-            <option>Economic Intelligence</option>
-            <option>Sustainability</option>
-            <option>Bioethics</option>
-            <option>Ethics of Disability</option>
-            <option>Arts & Cultural Ethics</option>
-            <option>Religion & Theology</option>
-            <option>Information Ethics</option>
-            <option>Environmental Ethics</option>
-            <option>Music & Literature</option>
-            <option>Food and Agriculture Ethics</option>
-            <option>Sports Ethics</option>
+            <!-- auto-populated from members data -->
           </select>
         </div>
         <span class="member-count" id="memberCount"></span>
       </div>
       <div id="cards" class="cards"></div>
       <p class="note">Want to update your profile? Contact us — Instagram: <a href="https://instagram.com/youngethos" target="_blank" rel="noopener">@youngethos</a></p>
-    </div>
-  </section>
-
-  <!-- ─── Events ───────────────────────────────────────── -->
-  <section id="events" style="border-top: 1px solid var(--border);">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <div class="section-label">What's happening</div>
-          <h2>Events & Opportunities</h2>
-        </div>
-      </div>
-      <div class="events-list">
-        <div class="event-card">
-          <div>
-            <span class="event-badge soon">Coming soon</span>
-          </div>
-          <div class="event-body">
-            <div class="event-title">Word Wars — A Clash of Ideas, Not of People</div>
-            <div class="event-desc">An ETHOS debate format exploring the most pressing questions at the intersection of ethics, politics, and society. Details to be announced.</div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -188,7 +118,6 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="#directory">Members</a></li>
             <li><a href="posts.html">Articles</a></li>
-            <li><a href="#events">Events</a></li>
             <li><a href="join.html">Applications</a></li>
           </ul>
         </div>
