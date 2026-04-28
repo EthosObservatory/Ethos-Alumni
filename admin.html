@@ -87,6 +87,18 @@
         </button>
 
         <div class="sidebar-label">Settings</div>
+        <button class="sidebar-item" data-panel="homepage">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Homepage
+        </button>
+        <button class="sidebar-item" data-panel="footer">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          Footer & Contacts
+        </button>
+        <button class="sidebar-item" data-panel="meta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Site Meta
+        </button>
         <button class="sidebar-item" data-panel="settings">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93A10 10 0 1 0 4.93 19.07 10 10 0 0 0 19.07 4.93z"/></svg>
           Settings
@@ -281,6 +293,78 @@
             </div>
             <p style="margin-bottom:14px">Custom content blocks that appear on the homepage between the About section and the Articles section. Supports full Markdown and optional CTA buttons.</p>
             <div id="sectionsListAdmin"></div>
+          </div>
+        </div>
+
+        <!-- ── Footer & Contacts ─────────────────────── -->
+        <div class="admin-panel" id="panelFooter">
+          <div class="panel-header">
+            <h2>Footer &amp; Contacts</h2>
+            <button class="btn btn-primary btn-sm" id="saveFooterBtn">Save &amp; Publish</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Organisation</h3>
+            <div class="form-group">
+              <label class="form-label">Copyright line</label>
+              <input type="text" id="footerCopyright" placeholder="© 2025 ETHOS Alumni Network" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Organisation description <span style="color:var(--text-3);font-weight:400">(shown in footer brand column)</span></label>
+              <textarea id="footerOrgDesc" rows="2" placeholder="Observatory on Public Ethics&#10;LUISS Guido Carli University – Rome, Italy"></textarea>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Contact Links</h3>
+            <p>Each entry appears as a link in the Contacts column of the footer.</p>
+            <div class="dynamic-list" id="footerContactsContainer"></div>
+            <button class="add-item-btn" style="margin-top:8px" onclick="Admin._addFooterContact()">+ Add contact</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>Social Links</h3>
+            <p>Shown in the footer and on the directory page.</p>
+            <div class="dynamic-list" id="footerSocialContainer"></div>
+            <button class="add-item-btn" style="margin-top:8px" onclick="Admin._addFooterSocial()">+ Add social link</button>
+          </div>
+        </div>
+
+        <!-- ── Site Meta ──────────────────────────────── -->
+        <div class="admin-panel" id="panelMeta">
+          <div class="panel-header">
+            <h2>Site Meta &amp; Analytics</h2>
+            <button class="btn btn-primary btn-sm" id="saveMetaBtn">Save &amp; Publish</button>
+          </div>
+
+          <div class="settings-section">
+            <h3>SEO &amp; Metadata</h3>
+            <div class="form-group">
+              <label class="form-label">Site title <span style="color:var(--text-3);font-weight:400">(browser tab &amp; search results)</span></label>
+              <input type="text" id="metaSiteTitle" placeholder="ETHOS Alumni Network" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Meta description</label>
+              <textarea id="metaDescription" rows="3" placeholder="Brief description for search engines…"></textarea>
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Google Analytics</h3>
+            <p>Paste your Measurement ID to enable analytics. Leave empty to disable.</p>
+            <div class="form-group">
+              <label class="form-label">Measurement ID</label>
+              <input type="text" id="metaAnalyticsId" placeholder="G-XXXXXXXXXX" />
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Application Form</h3>
+            <p>URL used on the <code>join.html</code> Apply button. Change here to update it site-wide.</p>
+            <div class="form-group">
+              <label class="form-label">Form URL</label>
+              <input type="url" id="metaFormUrl" placeholder="https://forms.office.com/…" />
+            </div>
           </div>
         </div>
 
