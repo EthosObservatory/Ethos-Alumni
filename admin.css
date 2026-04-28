@@ -525,6 +525,43 @@
   color: var(--accent);
 }
 
+/* ─── Section list (homepage panel) ─────────────────────── */
+.section-list-item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color .15s;
+}
+.section-list-item:hover { border-color: var(--border-2); }
+.section-list-title {
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--text);
+  min-width: 120px;
+}
+.section-list-excerpt {
+  font-size: .8rem;
+  color: var(--text-3);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.section-list-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.section-list-actions button[disabled] {
+  opacity: .3;
+  cursor: default;
+}
+
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 760px) {
   .admin-sidebar { display: none; }

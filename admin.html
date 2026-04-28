@@ -248,6 +248,15 @@
               </div>
             </div>
           </div>
+
+          <div class="settings-section">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <h3 style="margin:0">Custom Sections</h3>
+              <button class="btn btn-outline btn-sm" id="newSectionBtn">+ Add Section</button>
+            </div>
+            <p style="margin-bottom:14px">Custom content blocks that appear on the homepage between the About section and the Articles section. Supports full Markdown and optional CTA buttons.</p>
+            <div id="sectionsListAdmin"></div>
+          </div>
         </div>
 
         <!-- ── Settings ──────────────────────────────── -->
@@ -460,6 +469,60 @@
       <div class="admin-modal-footer">
         <button class="btn btn-ghost btn-sm" id="memberModalCancel">Cancel</button>
         <button class="btn btn-primary btn-sm" id="memberModalSave">Save Member</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════
+       SECTION MODAL
+  ═════════════════════════════════════════════════════ -->
+  <div class="admin-modal-overlay hidden" id="sectionModal">
+    <div class="admin-modal">
+      <div class="admin-modal-header">
+        <h3 id="sectionModalTitle">New Section</h3>
+        <button class="modal-close" id="sectionModalClose">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="admin-modal-body">
+        <input type="hidden" id="sectionIndex" value="-1" />
+        <div class="modal-tabs">
+          <button class="modal-tab active" data-tab="secBasic">Info</button>
+          <button class="modal-tab" data-tab="secContent">Content</button>
+        </div>
+
+        <div class="modal-tab-panel active" id="secBasic">
+          <div class="form-group">
+            <label class="form-label">Section Title *</label>
+            <input type="text" id="sectionTitle" placeholder="e.g. Our Mission, Research Areas, Partnerships…" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Label <span style="color:var(--text-3);font-weight:400">(small uppercase text above title, optional)</span></label>
+            <input type="text" id="sectionLabel" placeholder="e.g. About · Research · News" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">CTA Button Label <span style="color:var(--text-3);font-weight:400">(optional)</span></label>
+              <input type="text" id="sectionLinkLabel" placeholder="Learn more →" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button URL</label>
+              <input type="url" id="sectionLinkUrl" placeholder="https://… or #anchor" />
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-tab-panel" id="secContent">
+          <p style="font-size:.82rem;color:var(--text-3);margin-bottom:12px">Write in Markdown. Supports **bold**, *italic*, [links](url), ## headings, - lists, em dashes —, and all special characters.</p>
+          <div class="md-editor">
+            <textarea id="sectionBody" placeholder="Write section content here…"></textarea>
+            <div class="md-preview post-content" id="sectionBodyPreview"></div>
+          </div>
+        </div>
+      </div>
+      <div class="admin-modal-footer">
+        <button class="btn btn-ghost btn-sm" id="sectionModalCancel">Cancel</button>
+        <button class="btn btn-primary btn-sm" id="sectionModalSave">Save Section</button>
       </div>
     </div>
   </div>

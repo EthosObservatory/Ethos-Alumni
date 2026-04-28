@@ -38,12 +38,20 @@ const GitHub = {
     const r = await fetch(`${this.base}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}?ref=${REPO_BRANCH}`, { headers: this.headers() });
     if (!r.ok) throw new Error(`GitHub API ${r.status}: ${path}`);
     const data = await r.json();
-    const content = atob(data.content.replace(/\n/g, ''));
-    return { content: JSON.parse(content), sha: data.sha };
+    // Decode base64 → UTF-8 bytes → string (handles em dashes, accents, all Unicode)
+    const binary = atob(data.content.replace(/\n/g, ''));
+    const bytes  = Uint8Array.from(binary, c => c.charCodeAt(0));
+    const jsonStr = new TextDecoder('utf-8').decode(bytes);
+    return { content: JSON.parse(jsonStr), sha: data.sha };
   },
 
   async putFile(path, content, sha, message) {
-    const encoded = btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2))));
+    // Encode string → UTF-8 bytes → base64 (handles all Unicode)
+    const jsonStr = JSON.stringify(content, null, 2);
+    const bytes   = new TextEncoder().encode(jsonStr);
+    let binary = '';
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    const encoded = btoa(binary);
     const body = { message, content: encoded, branch: REPO_BRANCH };
     if (sha) body.sha = sha;
     const r = await fetch(`${this.base}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
@@ -206,36 +214,144 @@ const Admin = {
 
   populateHomepageForm() {
     const cfg = State.siteConfig;
-    document.getElementById('heroEyebrowInput').value   = cfg.hero?.eyebrow   || '';
-    document.getElementById('heroTitleInput').value     = cfg.hero?.title     || '';
-    document.getElementById('heroSubtitleInput').value  = cfg.hero?.subtitle  || '';
-    document.getElementById('aboutBodyInput').value     = cfg.about?.body     || '';
+    document.getElementById('heroEyebrowInput').value    = cfg.hero?.eyebrow    || '';
+    document.getElementById('heroTitleInput').value      = cfg.hero?.title      || '';
+    document.getElementById('heroSubtitleInput').value   = cfg.hero?.subtitle   || '';
+    document.getElementById('aboutBodyInput').value      = cfg.about?.body      || '';
     document.getElementById('aboutLinkLabelInput').value = cfg.about?.link_label || '';
     document.getElementById('aboutLinkUrlInput').value   = cfg.about?.link_url   || '';
+    this.renderSectionsList();
   },
 
   async saveHomepage() {
-    State.siteConfig = {
-      hero: {
-        eyebrow:  document.getElementById('heroEyebrowInput').value.trim(),
-        title:    document.getElementById('heroTitleInput').value.trim(),
-        subtitle: document.getElementById('heroSubtitleInput').value.trim()
-      },
-      about: {
-        body:       document.getElementById('aboutBodyInput').value,
-        link_label: document.getElementById('aboutLinkLabelInput').value.trim(),
-        link_url:   document.getElementById('aboutLinkUrlInput').value.trim()
-      }
+    State.siteConfig.hero = {
+      eyebrow:  document.getElementById('heroEyebrowInput').value.trim(),
+      title:    document.getElementById('heroTitleInput').value.trim(),
+      subtitle: document.getElementById('heroSubtitleInput').value.trim()
     };
+    State.siteConfig.about = {
+      body:       document.getElementById('aboutBodyInput').value,
+      link_label: document.getElementById('aboutLinkLabelInput').value.trim(),
+      link_url:   document.getElementById('aboutLinkUrlInput').value.trim()
+    };
+    if (!State.siteConfig.sections) State.siteConfig.sections = [];
+    await this._saveSiteConfig('Homepage updated and published!');
+  },
 
-    if (!State.token) { toast('No GitHub token — cannot publish', 'error'); return; }
+  async _saveSiteConfig(msg = 'Saved!') {
+    if (!State.token) { toast('No GitHub token — cannot publish', 'error'); return false; }
     try {
       const res = await GitHub.putFile('site.json', State.siteConfig, this._siteSha, 'admin: update site.json');
       this._siteSha = res.content.sha;
-      toast('Homepage updated and published!');
+      toast(msg);
+      return true;
     } catch (e) {
       toast('Save failed: ' + e.message, 'error');
+      return false;
     }
+  },
+
+  // ── Custom Sections ───────────────────────────────────────
+  renderSectionsList() {
+    const container = document.getElementById('sectionsListAdmin');
+    if (!container) return;
+    const sections = State.siteConfig.sections || [];
+
+    if (!sections.length) {
+      container.innerHTML = `<p style="color:var(--text-3);font-size:.85rem;padding:8px 0">No custom sections yet. Add one below.</p>`;
+      return;
+    }
+
+    container.innerHTML = sections.map((s, i) => `
+      <div class="section-list-item">
+        <div class="section-list-title">${s.title || '<em>Untitled section</em>'}</div>
+        <div class="section-list-excerpt">${(s.body || '').slice(0, 80).replace(/[*_#\[\]]/g, '')}${(s.body || '').length > 80 ? '…' : ''}</div>
+        <div class="section-list-actions">
+          <button class="btn btn-ghost btn-sm" onclick="Admin.moveSectionUp(${i})" ${i === 0 ? 'disabled' : ''} title="Move up">↑</button>
+          <button class="btn btn-ghost btn-sm" onclick="Admin.moveSectionDown(${i})" ${i === sections.length - 1 ? 'disabled' : ''} title="Move down">↓</button>
+          <button class="btn btn-ghost btn-sm" onclick="Admin.openEditSectionModal(${i})">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="Admin.deleteSection(${i})">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  openNewSectionModal() {
+    this._openSectionModal(-1);
+  },
+
+  openEditSectionModal(index) {
+    this._openSectionModal(index);
+  },
+
+  _openSectionModal(index) {
+    const isNew = index < 0;
+    const s = isNew ? {} : (State.siteConfig.sections || [])[index];
+    document.getElementById('sectionModalTitle').textContent = isNew ? 'New Section' : 'Edit Section';
+    document.getElementById('sectionIndex').value    = index;
+    document.getElementById('sectionTitle').value    = s?.title    || '';
+    document.getElementById('sectionLabel').value    = s?.label    || '';
+    document.getElementById('sectionBody').value     = s?.body     || '';
+    document.getElementById('sectionLinkLabel').value = s?.link_label || '';
+    document.getElementById('sectionLinkUrl').value   = s?.link_url   || '';
+    document.getElementById('sectionBodyPreview').innerHTML = markdownToHtml(s?.body || '');
+
+    document.querySelectorAll('#sectionModal .modal-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+    document.querySelectorAll('#sectionModal .modal-tab-panel').forEach((p, i) => p.classList.toggle('active', i === 0));
+    document.getElementById('sectionModal').classList.remove('hidden');
+  },
+
+  async saveSection() {
+    const title = document.getElementById('sectionTitle').value.trim();
+    if (!title) { toast('Title is required', 'error'); return; }
+
+    const section = {
+      id:         'sec-' + Date.now().toString(36),
+      title,
+      label:      document.getElementById('sectionLabel').value.trim(),
+      body:       document.getElementById('sectionBody').value,
+      link_label: document.getElementById('sectionLinkLabel').value.trim(),
+      link_url:   document.getElementById('sectionLinkUrl').value.trim()
+    };
+
+    if (!State.siteConfig.sections) State.siteConfig.sections = [];
+    const index = parseInt(document.getElementById('sectionIndex').value, 10);
+    if (index >= 0) {
+      section.id = State.siteConfig.sections[index].id;
+      State.siteConfig.sections[index] = section;
+    } else {
+      State.siteConfig.sections.push(section);
+    }
+
+    document.getElementById('sectionModal').classList.add('hidden');
+    this.renderSectionsList();
+    await this._saveSiteConfig('Section saved and published!');
+  },
+
+  async deleteSection(index) {
+    const s = (State.siteConfig.sections || [])[index];
+    if (!s) return;
+    const ok = await confirm('Delete section?', `"${s.title}" will be permanently removed from the homepage.`);
+    if (!ok) return;
+    State.siteConfig.sections.splice(index, 1);
+    this.renderSectionsList();
+    await this._saveSiteConfig('Section deleted');
+  },
+
+  async moveSectionUp(index) {
+    const secs = State.siteConfig.sections || [];
+    if (index <= 0) return;
+    [secs[index - 1], secs[index]] = [secs[index], secs[index - 1]];
+    this.renderSectionsList();
+    await this._saveSiteConfig('Order updated');
+  },
+
+  async moveSectionDown(index) {
+    const secs = State.siteConfig.sections || [];
+    if (index >= secs.length - 1) return;
+    [secs[index + 1], secs[index]] = [secs[index], secs[index + 1]];
+    this.renderSectionsList();
+    await this._saveSiteConfig('Order updated');
   },
 
   // ── Data loading ──────────────────────────────────────
@@ -707,6 +823,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Homepage save
   document.getElementById('saveHomepageBtn').addEventListener('click', () => Admin.saveHomepage());
+
+  // New section button
+  document.getElementById('newSectionBtn').addEventListener('click', () => Admin.openNewSectionModal());
+
+  // Section modal
+  initModalTabs('sectionModal');
+  document.getElementById('sectionModalClose').addEventListener('click',  () => document.getElementById('sectionModal').classList.add('hidden'));
+  document.getElementById('sectionModalCancel').addEventListener('click', () => document.getElementById('sectionModal').classList.add('hidden'));
+  document.getElementById('sectionModalSave').addEventListener('click',   () => Admin.saveSection());
+  document.getElementById('sectionBody').addEventListener('input', e => {
+    document.getElementById('sectionBodyPreview').innerHTML = markdownToHtml(e.target.value);
+  });
+  document.getElementById('sectionModal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) document.getElementById('sectionModal').classList.add('hidden');
+  });
 
   // Settings: token
   document.getElementById('saveTokenBtn').addEventListener('click', () => {

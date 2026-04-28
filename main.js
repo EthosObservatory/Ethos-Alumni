@@ -49,17 +49,17 @@ async function loadSiteConfig() {
 }
 
 function applySiteConfig(cfg) {
-  const hero = cfg.hero || {};
+  const hero  = cfg.hero  || {};
   const about = cfg.about || {};
 
-  const eyebrow = document.getElementById('heroEyebrow');
-  const title   = document.getElementById('heroTitle');
-  const subtitle = document.getElementById('heroSubtitle');
+  const eyebrow   = document.getElementById('heroEyebrow');
+  const title     = document.getElementById('heroTitle');
+  const subtitle  = document.getElementById('heroSubtitle');
   const aboutBody = document.getElementById('aboutBody');
 
-  if (eyebrow && hero.eyebrow) eyebrow.textContent = hero.eyebrow;
-  if (title && hero.title)     title.textContent = hero.title;
-  if (subtitle && hero.subtitle) subtitle.textContent = hero.subtitle;
+  if (eyebrow  && hero.eyebrow)   eyebrow.textContent  = hero.eyebrow;
+  if (title    && hero.title)     title.textContent     = hero.title;
+  if (subtitle && hero.subtitle)  subtitle.textContent  = hero.subtitle;
 
   if (aboutBody) {
     let html = markdownToHtml(about.body || '');
@@ -68,6 +68,28 @@ function applySiteConfig(cfg) {
     }
     aboutBody.innerHTML = html;
   }
+
+  renderCustomSections(cfg.sections || []);
+}
+
+function renderCustomSections(sections) {
+  const container = document.getElementById('customSections');
+  if (!container) return;
+
+  container.innerHTML = sections.map(s => {
+    const bodyHtml = markdownToHtml(s.body || '');
+    const cta = (s.link_url && s.link_label)
+      ? `<p style="margin-top:20px"><a class="btn btn-outline" href="${s.link_url}">${s.link_label}</a></p>`
+      : '';
+    return `
+      <section style="border-top:1px solid var(--border)">
+        <div class="container">
+          ${s.label ? `<div class="section-label">${s.label}</div>` : ''}
+          <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin-bottom:20px">${s.title}</h2>
+          <div class="about-text">${bodyHtml}${cta}</div>
+        </div>
+      </section>`;
+  }).join('');
 }
 
 // ─── Members ─────────────────────────────────────────────
