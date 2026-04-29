@@ -329,6 +329,36 @@ function renderHomePostsPreview(posts) {
   `).join('');
 }
 
+// ─── PDF Renderer ─────────────────────────────────────────
+
+async function renderPDF(url, container) {
+  container.innerHTML = '<p style="color:var(--text-3);text-align:center;padding:40px 0">Loading PDF…</p>';
+  try {
+    const lib = window.pdfjsLib;
+    if (!lib) throw new Error('PDF.js not loaded');
+    lib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf = await lib.getDocument(url).promise;
+    container.innerHTML = '';
+    const viewer = document.createElement('div');
+    viewer.className = 'pdf-viewer';
+    container.appendChild(viewer);
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: 1.5 });
+      const wrapper = document.createElement('div');
+      wrapper.className = 'pdf-page-wrapper';
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      wrapper.appendChild(canvas);
+      viewer.appendChild(wrapper);
+      await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+    }
+  } catch (e) {
+    container.innerHTML = `<p style="color:var(--red);text-align:center;padding:40px 0">Could not load PDF: ${e.message}</p>`;
+  }
+}
+
 // ─── Post Modal ───────────────────────────────────────────
 
 let _allPosts = [];
@@ -344,13 +374,25 @@ function openPost(id) {
       <span style="color:var(--text-3);font-size:.82rem">${formatDate(post.date)}</span>
       ${post.author ? `<span style="color:var(--text-3);font-size:.82rem">by ${post.author}</span>` : ''}
     </div>`;
-  document.getElementById('modalBody').innerHTML = `<div class="post-content">${markdownToHtml(post.content || '')}</div>`;
+
+  const body = document.getElementById('modalBody');
+  const box  = document.querySelector('#postModal .modal-box');
+  if (post.pdf_url) {
+    box?.classList.add('pdf-mode');
+    body.innerHTML = '';
+    renderPDF(post.pdf_url, body);
+  } else {
+    box?.classList.remove('pdf-mode');
+    body.innerHTML = `<div class="post-content">${markdownToHtml(post.content || '')}</div>`;
+  }
+
   document.getElementById('postModal').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
 function closePost() {
   document.getElementById('postModal')?.classList.add('hidden');
+  document.querySelector('#postModal .modal-box')?.classList.remove('pdf-mode');
   document.body.style.overflow = '';
 }
 

@@ -562,6 +562,72 @@
   cursor: default;
 }
 
+/* ─── PDF Upload ─────────────────────────────────────────── */
+.content-type-toggle {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3px;
+  width: fit-content;
+}
+.content-type-btn {
+  background: none;
+  border: none;
+  padding: 5px 14px;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  font: inherit;
+  font-size: .82rem;
+  color: var(--text-3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .15s, color .15s;
+}
+.content-type-btn.active {
+  background: var(--bg);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(13,27,110,.10);
+}
+.pdf-dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 36px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.pdf-dropzone p { font-size: .87rem; margin: 0; color: var(--text-3); }
+.pdf-dropzone:hover, .pdf-dropzone.drag-over {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+.pdf-browse-label {
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+.pdf-selected, .pdf-current {
+  margin-top: 10px;
+  padding: 9px 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  font-size: .84rem;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pdf-current span { color: var(--text-3); }
+
 /* ─── Responsive ─────────────────────────────────────────── */
 @media (max-width: 760px) {
   .admin-sidebar { display: none; }

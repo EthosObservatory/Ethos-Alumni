@@ -69,6 +69,30 @@ const GitHub = {
   async validateToken() {
     const r = await fetch(`${this.base}/repos/${REPO_OWNER}/${REPO_NAME}`, { headers: this.headers() });
     return r.ok;
+  },
+
+  async getFileSha(path) {
+    try {
+      const r = await fetch(`${this.base}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}?ref=${REPO_BRANCH}`, { headers: this.headers() });
+      if (!r.ok) return null;
+      const data = await r.json();
+      return data.sha || null;
+    } catch { return null; }
+  },
+
+  async putBinaryFile(path, base64Content, sha, message) {
+    const body = { message, content: base64Content, branch: REPO_BRANCH };
+    if (sha) body.sha = sha;
+    const r = await fetch(`${this.base}/repos/${REPO_OWNER}/${REPO_NAME}/contents/${path}`, {
+      method: 'PUT',
+      headers: this.headers(),
+      body: JSON.stringify(body)
+    });
+    if (!r.ok) {
+      const err = await r.json().catch(() => ({}));
+      throw new Error(err.message || `GitHub API ${r.status}`);
+    }
+    return r.json();
   }
 };
 
@@ -180,9 +204,10 @@ function markdownToHtml(md) {
 // ─── Admin namespace ──────────────────────────────────────
 const Admin = {
 
-  _postsSha:   null,
-  _membersSha: null,
-  _siteSha:    null,
+  _postsSha:      null,
+  _membersSha:    null,
+  _siteSha:       null,
+  _pendingPdfFile: null,
 
   // ── Init ──────────────────────────────────────────────
   async init() {
@@ -541,14 +566,42 @@ const Admin = {
     document.getElementById('postPublished').value    = isNew ? 'true' : String(post.published !== false);
     document.getElementById('postExcerpt').value      = isNew ? '' : (post.excerpt || '');
     document.getElementById('postTags').value         = isNew ? '' : (post.tags || []).join(', ');
-    document.getElementById('postContentMd').value   = isNew ? '' : (post.content || '');
-    document.getElementById('postContentPreview').innerHTML = markdownToHtml(isNew ? '' : post.content || '');
+
+    this._pendingPdfFile = null;
+    const isPdf = !isNew && !!post.pdf_url;
+    this._setPdfMode(isPdf);
+
+    if (isPdf) {
+      document.getElementById('postPdfPath').value = post.pdf_url;
+      document.getElementById('pdfStatus').innerHTML = `<div class="pdf-current"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Current PDF: <span>${post.pdf_url}</span></div>`;
+    } else {
+      document.getElementById('postContentMd').value = isNew ? '' : (post.content || '');
+      document.getElementById('postContentPreview').innerHTML = markdownToHtml(isNew ? '' : post.content || '');
+      document.getElementById('postPdfPath').value = '';
+      document.getElementById('pdfStatus').innerHTML = '';
+    }
 
     // Reset to first tab
     document.querySelectorAll('#postModal .modal-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
     document.querySelectorAll('#postModal .modal-tab-panel').forEach((p, i) => p.classList.toggle('active', i === 0));
 
     document.getElementById('postModal').classList.remove('hidden');
+  },
+
+  _setPdfMode(isPdf) {
+    document.getElementById('btnTypeMarkdown').classList.toggle('active', !isPdf);
+    document.getElementById('btnTypePdf').classList.toggle('active', isPdf);
+    document.getElementById('mdEditorSection').style.display = isPdf ? 'none' : '';
+    document.getElementById('pdfUploadSection').style.display = isPdf ? '' : 'none';
+  },
+
+  _readFileAsBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   },
 
   async savePost() {
@@ -558,20 +611,51 @@ const Admin = {
     const id        = document.getElementById('postId').value || uid();
     const tags      = document.getElementById('postTags').value.split(',').map(t => t.trim()).filter(Boolean);
     const published = document.getElementById('postPublished').value === 'true';
+    const isPdf     = document.getElementById('btnTypePdf').classList.contains('active');
 
     const post = {
       id,
       title,
-      slug: title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      excerpt:   document.getElementById('postExcerpt').value.trim(),
-      content:   document.getElementById('postContentMd').value,
-      author:    document.getElementById('postAuthor').value.trim(),
-      date:      document.getElementById('postDate').value || today(),
-      category:  document.getElementById('postCategory').value,
+      slug:    title.toLowerCase().replace(/[^a-z0-9]+/g, '-'),
+      excerpt: document.getElementById('postExcerpt').value.trim(),
+      author:  document.getElementById('postAuthor').value.trim(),
+      date:    document.getElementById('postDate').value || today(),
+      category: document.getElementById('postCategory').value,
       tags,
       published,
-      featured:  false
+      featured: false
     };
+
+    if (isPdf) {
+      if (this._pendingPdfFile) {
+        if (!State.token) { toast('GitHub token required to upload PDF', 'error'); return; }
+        const pdfPath = `pdfs/${id}.pdf`;
+        const saveBtn = document.getElementById('postModalSave');
+        saveBtn.textContent = 'Uploading PDF…';
+        saveBtn.disabled = true;
+        try {
+          const base64 = await this._readFileAsBase64(this._pendingPdfFile);
+          const existingSha = await GitHub.getFileSha(pdfPath);
+          await GitHub.putBinaryFile(pdfPath, base64, existingSha, `admin: upload PDF for ${id}`);
+          post.pdf_url = pdfPath;
+          post.content = '';
+        } catch (e) {
+          toast('PDF upload failed: ' + e.message, 'error');
+          saveBtn.textContent = 'Save Article';
+          saveBtn.disabled = false;
+          return;
+        }
+        saveBtn.textContent = 'Save Article';
+        saveBtn.disabled = false;
+      } else {
+        const existingPath = document.getElementById('postPdfPath').value;
+        if (!existingPath) { toast('Please select a PDF file', 'error'); return; }
+        post.pdf_url = existingPath;
+        post.content = '';
+      }
+    } else {
+      post.content = document.getElementById('postContentMd').value;
+    }
 
     const idx = State.posts.findIndex(p => p.id === id);
     if (idx >= 0) State.posts[idx] = post;
@@ -798,6 +882,42 @@ document.addEventListener('DOMContentLoaded', () => {
   // Live markdown preview
   document.getElementById('postContentMd').addEventListener('input', e => {
     document.getElementById('postContentPreview').innerHTML = markdownToHtml(e.target.value);
+  });
+
+  // Content type toggle
+  document.getElementById('btnTypeMarkdown').addEventListener('click', () => {
+    Admin._setPdfMode(false);
+    Admin._pendingPdfFile = null;
+  });
+  document.getElementById('btnTypePdf').addEventListener('click', () => Admin._setPdfMode(true));
+
+  // PDF file selection
+  document.getElementById('pdfFileInput').addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (!file) return;
+    Admin._pendingPdfFile = file;
+    const mb = (file.size / 1024 / 1024).toFixed(1);
+    document.getElementById('pdfStatus').innerHTML = `<div class="pdf-selected"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>${file.name} <span style="color:var(--text-3)">(${mb} MB)</span></div>`;
+  });
+
+  // PDF drag-and-drop
+  const pdfDropzone = document.getElementById('pdfDropzone');
+  pdfDropzone.addEventListener('dragover', e => { e.preventDefault(); pdfDropzone.classList.add('drag-over'); });
+  pdfDropzone.addEventListener('dragleave', () => pdfDropzone.classList.remove('drag-over'));
+  pdfDropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    pdfDropzone.classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      Admin._pendingPdfFile = file;
+      const mb = (file.size / 1024 / 1024).toFixed(1);
+      document.getElementById('pdfStatus').innerHTML = `<div class="pdf-selected"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>${file.name} <span style="color:var(--text-3)">(${mb} MB)</span></div>`;
+    } else {
+      toast('Please drop a PDF file', 'error');
+    }
+  });
+  pdfDropzone.addEventListener('click', e => {
+    if (e.target.tagName !== 'LABEL') document.getElementById('pdfFileInput').click();
   });
 
   // Member modal

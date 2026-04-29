@@ -361,10 +361,36 @@
 
         <!-- Content tab -->
         <div class="modal-tab-panel" id="postContent">
-          <p style="font-size:.82rem;color:var(--text-3);margin-bottom:12px">Write in Markdown. The preview updates as you type.</p>
-          <div class="md-editor">
-            <textarea id="postContentMd" placeholder="## Introduction&#10;&#10;Write your article here in Markdown..."></textarea>
-            <div class="md-preview post-content" id="postContentPreview"></div>
+          <div class="content-type-toggle">
+            <button class="content-type-btn active" id="btnTypeMarkdown" data-type="markdown">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Markdown
+            </button>
+            <button class="content-type-btn" id="btnTypePdf" data-type="pdf">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M10 13h4m-2-2v4"/></svg>
+              PDF Document
+            </button>
+          </div>
+
+          <!-- Markdown editor -->
+          <div id="mdEditorSection">
+            <p style="font-size:.82rem;color:var(--text-3);margin-bottom:12px">Write in Markdown. The preview updates as you type.</p>
+            <div class="md-editor">
+              <textarea id="postContentMd" placeholder="## Introduction&#10;&#10;Write your article here in Markdown..."></textarea>
+              <div class="md-preview post-content" id="postContentPreview"></div>
+            </div>
+          </div>
+
+          <!-- PDF upload -->
+          <div id="pdfUploadSection" style="display:none">
+            <input type="hidden" id="postPdfPath" />
+            <div class="pdf-dropzone" id="pdfDropzone">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--text-3)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+              <p>Drop a PDF here or <label for="pdfFileInput" class="pdf-browse-label">browse</label></p>
+              <p style="font-size:.76rem">Max recommended: 10 MB</p>
+              <input type="file" id="pdfFileInput" accept=".pdf" style="display:none" />
+            </div>
+            <div id="pdfStatus"></div>
           </div>
         </div>
       </div>

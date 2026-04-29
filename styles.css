@@ -983,6 +983,27 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 
 .modal-body { padding: 28px 32px 32px; }
 
+/* PDF viewer in modal */
+.modal-box.pdf-mode {
+  width: min(900px, 96vw);
+}
+.pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pdf-page-wrapper {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(13,27,110,.07);
+}
+.pdf-page-wrapper canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* Post content rendering */
 .post-content { color: var(--text-2); line-height: 1.8; }
 .post-content h1,.post-content h2,.post-content h3 { color: var(--text); margin: 24px 0 12px; letter-spacing: -0.01em; }
