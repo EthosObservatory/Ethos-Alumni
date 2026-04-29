@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-label="ETHOS">
+  <defs>
+    <!-- Cyan channel clip strips -->
+    <clipPath id="ca"><rect x="0" y="8"   width="760" height="7"/></clipPath>
+    <clipPath id="cb"><rect x="0" y="42"  width="760" height="5"/></clipPath>
+    <clipPath id="cc"><rect x="0" y="72"  width="760" height="8"/></clipPath>
+    <clipPath id="cd"><rect x="0" y="106" width="760" height="5"/></clipPath>
+    <clipPath id="ce"><rect x="0" y="138" width="760" height="7"/></clipPath>
+    <clipPath id="cf"><rect x="0" y="160" width="760" height="6"/></clipPath>
+    <!-- Pink channel clip strips -->
+    <clipPath id="pa"><rect x="0" y="22"  width="760" height="6"/></clipPath>
+    <clipPath id="pb"><rect x="0" y="56"  width="760" height="5"/></clipPath>
+    <clipPath id="pc"><rect x="0" y="88"  width="760" height="7"/></clipPath>
+    <clipPath id="pd"><rect x="0" y="120" width="760" height="5"/></clipPath>
+    <clipPath id="pe"><rect x="0" y="150" width="760" height="5"/></clipPath>
+  </defs>
+
+  <!-- Deep navy shadow (depth layer) -->
+  <text x="382" y="148"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#0c1d6e" opacity="0.9">ETHOS</text>
+
+  <!-- Main white text -->
+  <text x="380" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ffffff">ETHOS</text>
+
+  <!-- Cyan glitch channel (+6px right) -->
+  <text x="386" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#00d4ff" opacity="0.88"
+        clip-path="url(#ca)">ETHOS</text>
+  <text x="386" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#00d4ff" opacity="0.88"
+        clip-path="url(#cc)">ETHOS</text>
+  <text x="386" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#00d4ff" opacity="0.88"
+        clip-path="url(#ce)">ETHOS</text>
+
+  <!-- Pink glitch channel (-5px left) -->
+  <text x="375" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ff1a70" opacity="0.82"
+        clip-path="url(#pa)">ETHOS</text>
+  <text x="375" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ff1a70" opacity="0.82"
+        clip-path="url(#pc)">ETHOS</text>
+  <text x="375" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ff1a70" opacity="0.82"
+        clip-path="url(#pe)">ETHOS</text>
+
+  <!-- Extra thin cyan lines (texture) -->
+  <text x="388" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#00d4ff" opacity="0.6"
+        clip-path="url(#cb)">ETHOS</text>
+  <text x="388" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#00d4ff" opacity="0.6"
+        clip-path="url(#cf)">ETHOS</text>
+
+  <!-- Extra thin pink lines (texture) -->
+  <text x="373" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ff1a70" opacity="0.55"
+        clip-path="url(#pb)">ETHOS</text>
+  <text x="373" y="144"
+        font-family="'Arial Black', 'Arial Bold', Impact, Arial, sans-serif"
+        font-size="136" font-weight="900" letter-spacing="20"
+        text-anchor="middle" fill="#ff1a70" opacity="0.55"
+        clip-path="url(#pd)">ETHOS</text>
+</svg>
