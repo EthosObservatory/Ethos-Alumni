@@ -254,7 +254,7 @@ section { padding: 72px 0; }
 
 /* ─── Navbar logo image ──────────────────────────────────── */
 .logo-img {
-  height: 44px;
+  height: 28px;
   width: auto;
   display: block;
   visibility: hidden;
