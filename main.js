@@ -2,6 +2,30 @@
    ETHOS Alumni Network — Main JS
    ============================================================ */
 
+// ─── Logo – strip black background via canvas ─────────────
+
+async function makeLogoTransparent(src) {
+  try {
+    const img = new Image();
+    await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = src; });
+    const scale = Math.min(1, 800 / img.naturalWidth);
+    const canvas = document.createElement('canvas');
+    canvas.width  = Math.round(img.naturalWidth  * scale);
+    canvas.height = Math.round(img.naturalHeight * scale);
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    const d = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const px = d.data;
+    for (let i = 0; i < px.length; i += 4) {
+      const sum = px[i] + px[i + 1] + px[i + 2];
+      if (sum < 35)       px[i + 3] = 0;
+      else if (sum < 90)  px[i + 3] = Math.round((sum - 35) / 55 * 255);
+    }
+    ctx.putImageData(d, 0, 0);
+    return await new Promise(r => canvas.toBlob(b => r(URL.createObjectURL(b)), 'image/png'));
+  } catch { return null; }
+}
+
 // ─── Helpers ─────────────────────────────────────────────
 
 function initials(name) {
@@ -58,7 +82,7 @@ function applySiteConfig(cfg) {
   const aboutBody = document.getElementById('aboutBody');
 
   if (eyebrow  && hero.eyebrow)   eyebrow.textContent  = hero.eyebrow;
-  if (title    && hero.title)     title.textContent     = hero.title;
+  if (title && hero.title && !title.querySelector('img')) title.textContent = hero.title;
   if (subtitle && hero.subtitle)  subtitle.textContent  = hero.subtitle;
 
   if (aboutBody) {
@@ -320,6 +344,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Apply site config to hero + about
   applySiteConfig(cfg);
+
+  // Make logo PNG transparent and apply to all logo images
+  makeLogoTransparent('ethos-logo.png').then(url => {
+    document.querySelectorAll('img.logo-img, img.logo-h1').forEach(el => {
+      if (url) el.src = url;
+      el.style.visibility = 'visible';
+    });
+  });
 
   // Members stat
   const statEl = document.getElementById('statMembers');
