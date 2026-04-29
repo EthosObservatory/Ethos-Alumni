@@ -2,42 +2,42 @@
    ETHOS Alumni Network — Design System
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 
 :root {
-  --bg:          #000000;
-  --bg-surface:  #060a18;
-  --bg-elevated: #0a1028;
-  --bg-hover:    #0f1840;
+  --bg:          #ffffff;
+  --bg-surface:  #f2f4fb;
+  --bg-elevated: #e6eaf6;
+  --bg-hover:    #d9dff0;
 
-  --border:      #141e3a;
-  --border-2:    #1c2a52;
+  --border:      #c8d0e8;
+  --border-2:    #adb8d8;
 
-  --text:        #ffffff;
-  --text-2:      #8899cc;
-  --text-3:      #3d4e7a;
+  --text:        #0d1b6e;
+  --text-2:      #3a52a8;
+  --text-3:      #7880b8;
 
-  --accent:      #00d4ff;
-  --accent-dim:  rgba(0, 212, 255, 0.12);
-  --accent-dark: #00a8cc;
+  --accent:      #0d1b6e;
+  --accent-dim:  rgba(13, 27, 110, 0.10);
+  --accent-dark: #060e48;
 
   --pink:        #ff1a70;
   --pink-dim:    rgba(255, 26, 112, 0.12);
 
-  --red:         #f87171;
-  --red-dim:     rgba(248, 113, 113, 0.12);
-  --yellow:      #fbbf24;
-  --blue:        #60a5fa;
+  --red:         #dc2626;
+  --red-dim:     rgba(220, 38, 38, 0.12);
+  --yellow:      #d97706;
+  --blue:        #2563eb;
 
   --radius-s:    6px;
   --radius:      10px;
   --radius-l:    16px;
   --radius-xl:   24px;
 
-  --shadow:      0 4px 24px rgba(0,0,0,.45);
-  --shadow-l:    0 12px 48px rgba(0,0,0,.6);
+  --shadow:      0 4px 24px rgba(13,27,110,.12);
+  --shadow-l:    0 12px 48px rgba(13,27,110,.18);
 
-  --font:        'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font:        'EB Garamond', Garamond, Georgia, serif;
   --mono:        ui-monospace, 'Fira Code', monospace;
 
   --header-h:    64px;
@@ -51,7 +51,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font);
-  font-size: 15px;
+  font-size: 17px;
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
@@ -115,7 +115,7 @@ section { padding: 72px 0; }
   z-index: 100;
   height: var(--header-h);
   border-bottom: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.88);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: saturate(1.5) blur(12px);
   -webkit-backdrop-filter: saturate(1.5) blur(12px);
 }
@@ -234,10 +234,10 @@ section { padding: 72px 0; }
   margin-left: 8px;
   background: var(--accent-dim) !important;
   color: var(--accent) !important;
-  border: 1px solid rgba(0,212,255,.25) !important;
+  border: 1px solid rgba(13,27,110,.25) !important;
 }
 .nav-cta:hover {
-  background: rgba(0,212,255,.2) !important;
+  background: rgba(13,27,110,.2) !important;
 }
 
 /* Mobile nav toggle */
@@ -255,11 +255,11 @@ section { padding: 72px 0; }
 /* ─── Hero ───────────────────────────────────────────────── */
 .hero {
   padding: 96px 0 80px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,.06);
   background:
-    radial-gradient(ellipse 900px 500px at 60% 0%, rgba(0,212,255,.07) 0%, transparent 70%),
+    radial-gradient(ellipse 900px 500px at 60% 0%, rgba(0,212,255,.06) 0%, transparent 70%),
     radial-gradient(ellipse 600px 400px at 10% 80%, rgba(255,26,112,.04) 0%, transparent 60%),
-    linear-gradient(180deg, var(--bg) 0%, var(--bg) 100%);
+    #04092a;
   position: relative;
   overflow: hidden;
 }
@@ -290,12 +290,26 @@ section { padding: 72px 0; }
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: #00d4ff;
   margin-bottom: 20px;
   padding: 5px 12px;
-  background: var(--accent-dim);
-  border: 1px solid rgba(0,212,255,.2);
+  background: rgba(0,212,255,.12);
+  border: 1px solid rgba(13,27,110,.25);
   border-radius: 999px;
+}
+
+/* Hero section: dark bg requires white text overrides */
+.hero h1,
+.hero-stat-value { color: #ffffff; }
+.hero-sub       { color: rgba(255,255,255,.78); }
+.hero-stat-label { color: rgba(255,255,255,.58); }
+.hero-stats { border-top-color: rgba(255,255,255,.12); }
+.hero .btn-outline {
+  color: #ffffff;
+  border-color: rgba(255,255,255,.3);
+}
+.hero .btn-outline:hover {
+  background: rgba(255,255,255,.08);
 }
 
 .hero h1 {
@@ -369,7 +383,7 @@ section { padding: 72px 0; }
 
 .btn-primary {
   background: var(--accent);
-  color: #001a2e;
+  color: #ffffff;
 }
 
 .btn-outline {
@@ -577,7 +591,7 @@ input[type="search"] { padding-left: 36px; min-width: 220px; }
 
 input:focus, select:focus, textarea:focus {
   border-color: var(--border-2);
-  box-shadow: 0 0 0 3px rgba(0,212,255,.1);
+  box-shadow: 0 0 0 3px rgba(13,27,110,.1);
 }
 
 select { appearance: none; padding-right: 28px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a5a7a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
@@ -622,7 +636,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
   min-width: 42px;
   border-radius: 50%;
   background: var(--accent-dim);
-  border: 1.5px solid rgba(0,212,255,.2);
+  border: 1.5px solid rgba(13,27,110,.2);
   color: var(--accent);
   font-size: 0.9rem;
   font-weight: 700;
@@ -713,7 +727,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 }
 
 .badge-expert {
-  border-color: rgba(0,212,255,.25);
+  border-color: rgba(13,27,110,.25);
   color: var(--accent-dark);
   background: var(--accent-dim);
 }
@@ -776,7 +790,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 }
 .contact-link:hover {
   color: var(--accent);
-  border-color: rgba(0,212,255,.3);
+  border-color: rgba(13,27,110,.3);
   text-decoration: none;
 }
 
@@ -927,7 +941,7 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 }
 .filter-chip:hover, .filter-chip.active {
   background: var(--accent-dim);
-  border-color: rgba(0,212,255,.3);
+  border-color: rgba(13,27,110,.3);
   color: var(--accent);
 }
 
