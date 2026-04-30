@@ -4,7 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Applications — ETHOS Alumni Network</title>
-  <meta name="description" content="Apply to join the ETHOS Alumni Network — a selective community at the intersection of ethics, philosophy, and governance.">
+  <meta name="description" content="Apply to join the ETHOS Alumni Network — a selective community at the intersection of ethics, philosophy, and governance. Based at LUISS Guido Carli, Rome." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ethosobservatory.github.io/Ethos-Alumni/join.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ETHOS Alumni Network" />
+  <meta property="og:title" content="Applications — ETHOS Alumni Network" />
+  <meta property="og:description" content="Apply to join the ETHOS Alumni Network — a selective community at the intersection of ethics, philosophy, and governance. Based at LUISS Guido Carli, Rome." />
+  <meta property="og:url" content="https://ethosobservatory.github.io/Ethos-Alumni/join.html" />
+  <meta property="og:image" content="https://ethosobservatory.github.io/Ethos-Alumni/ethos-logo.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Applications — ETHOS Alumni Network" />
+  <meta name="twitter:description" content="Apply to join the ETHOS Alumni Network — a selective community at the intersection of ethics, philosophy, and governance." />
+  <meta name="twitter:image" content="https://ethosobservatory.github.io/Ethos-Alumni/ethos-logo.png" />
+
+  <!-- JSON-LD: WebPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Applications — ETHOS Alumni Network",
+    "url": "https://ethosobservatory.github.io/Ethos-Alumni/join.html",
+    "description": "Apply to join the ETHOS Alumni Network — a selective community at the intersection of ethics, philosophy, and governance.",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "ETHOS Alumni Network",
+      "url": "https://ethosobservatory.github.io/Ethos-Alumni/"
+    }
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
   <script src="logo.js" defer></script>
 </head>
@@ -176,10 +211,13 @@
       <div class="footer-bottom">
         <span>© 2025 ETHOS Alumni Network</span>
         <span>LUISS Guido Carli · Rome</span>
+        <button class="footer-cookie-btn" onclick="EthosConsent.show()" aria-label="Cookie settings">Cookie settings</button>
       </div>
     </div>
   </footer>
 
+  <script src="cookie-consent.js"></script>
+  <script src="analytics.js"></script>
   <script>
     document.getElementById('navToggle')?.addEventListener('click', () => {
       document.getElementById('navLinks').classList.toggle('open');

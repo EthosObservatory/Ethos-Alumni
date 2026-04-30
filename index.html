@@ -5,6 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ETHOS Alumni Network</title>
   <meta name="description" content="ETHOS Alumni Network – LUISS Guido Carli: a selective community of students, alumni, and collaborators engaged in public ethics, philosophy, and governance." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ethosobservatory.github.io/Ethos-Alumni/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ETHOS Alumni Network" />
+  <meta property="og:title" content="ETHOS Alumni Network" />
+  <meta property="og:description" content="A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance." />
+  <meta property="og:url" content="https://ethosobservatory.github.io/Ethos-Alumni/" />
+  <meta property="og:image" content="https://ethosobservatory.github.io/Ethos-Alumni/ethos-logo.png" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ETHOS Alumni Network" />
+  <meta name="twitter:description" content="A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance." />
+  <meta name="twitter:image" content="https://ethosobservatory.github.io/Ethos-Alumni/ethos-logo.png" />
+
+  <!-- JSON-LD: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ETHOS Alumni Network",
+    "url": "https://ethosobservatory.github.io/Ethos-Alumni/",
+    "logo": "https://ethosobservatory.github.io/Ethos-Alumni/ethos-logo.png",
+    "description": "A selective community of students, alumni, researchers, and collaborators united by a commitment to public ethics, political philosophy, and responsible governance.",
+    "email": "ethos.observatory@outlook.it",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "ETHOS – Observatory of Public Ethics",
+      "url": "https://ethosobservatory.github.io/Ethos-Alumni/",
+      "parentOrganization": {
+        "@type": "EducationalOrganization",
+        "name": "LUISS Guido Carli University",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Rome",
+          "addressCountry": "IT"
+        }
+      }
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "ethos.observatory@outlook.it",
+      "contactType": "customer support"
+    },
+    "sameAs": [
+      "https://www.instagram.com/youngethos"
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="logo.js" defer></script>
@@ -138,6 +192,7 @@
       <div class="footer-bottom">
         <span>© 2025 ETHOS Alumni Network</span>
         <span>LUISS Guido Carli · Rome</span>
+        <button class="footer-cookie-btn" onclick="EthosConsent.show()" aria-label="Cookie settings">Cookie settings</button>
       </div>
     </div>
   </footer>
@@ -159,5 +214,7 @@
   </div>
 
   <script src="main.js"></script>
+  <script src="cookie-consent.js"></script>
+  <script src="analytics.js"></script>
 </body>
 </html>
