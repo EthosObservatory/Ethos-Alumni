@@ -2,53 +2,6 @@
    ETHOS Alumni Network — Main JS
    ============================================================ */
 
-// ─── Logo – strip black background via canvas ─────────────
-
-async function makeLogoTransparent(src) {
-  try {
-    const img = new Image();
-    await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = src; });
-    const scale = Math.min(1, 900 / img.naturalWidth);
-    const W = Math.round(img.naturalWidth * scale);
-    const H = Math.round(img.naturalHeight * scale);
-    const canvas = document.createElement('canvas');
-    canvas.width = W; canvas.height = H;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0, W, H);
-    const d = ctx.getImageData(0, 0, W, H);
-    const px = d.data;
-
-    // Strip black background
-    for (let i = 0; i < px.length; i += 4) {
-      const sum = px[i] + px[i + 1] + px[i + 2];
-      if (sum < 35)      px[i + 3] = 0;
-      else if (sum < 90) px[i + 3] = Math.round((sum - 35) / 55 * 255);
-    }
-    ctx.putImageData(d, 0, 0);
-
-    // Auto-crop: find tight bounding box of non-transparent pixels
-    let x0 = W, y0 = H, x1 = 0, y1 = 0;
-    for (let y = 0; y < H; y++) {
-      for (let x = 0; x < W; x++) {
-        if (d.data[(y * W + x) * 4 + 3] > 8) {
-          if (x < x0) x0 = x; if (x > x1) x1 = x;
-          if (y < y0) y0 = y; if (y > y1) y1 = y;
-        }
-      }
-    }
-    const pad = 6;
-    x0 = Math.max(0, x0 - pad); y0 = Math.max(0, y0 - pad);
-    x1 = Math.min(W - 1, x1 + pad); y1 = Math.min(H - 1, y1 + pad);
-
-    // Return cropped canvas as blob URL
-    const cw = x1 - x0 + 1, ch = y1 - y0 + 1;
-    const crop = document.createElement('canvas');
-    crop.width = cw; crop.height = ch;
-    crop.getContext('2d').drawImage(canvas, x0, y0, cw, ch, 0, 0, cw, ch);
-    return await new Promise(r => crop.toBlob(b => r(URL.createObjectURL(b)), 'image/png'));
-  } catch { return null; }
-}
-
 // ─── Helpers ─────────────────────────────────────────────
 
 function initials(name) {
@@ -409,14 +362,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Apply site config to hero + about
   applySiteConfig(cfg);
-
-  // Make logo PNG transparent and apply to all logo images
-  makeLogoTransparent('ethos-logo.png').then(url => {
-    document.querySelectorAll('img.logo-img, img.logo-h1').forEach(el => {
-      if (url) el.src = url;
-      el.style.visibility = 'visible';
-    });
-  });
 
   // Members stat
   const statEl = document.getElementById('statMembers');
