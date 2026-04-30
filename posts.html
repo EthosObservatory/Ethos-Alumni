@@ -45,13 +45,19 @@
   <!-- ─── Posts ──────────────────────────────────────── -->
   <section style="padding: 48px 0 80px;">
     <div class="container">
-      <div class="posts-filter-bar" id="filterBar">
-        <button class="filter-chip active" data-cat="">All</button>
-        <button class="filter-chip" data-cat="Announcements">Announcements</button>
-        <button class="filter-chip" data-cat="Insights">Insights</button>
-        <button class="filter-chip" data-cat="Research">Research</button>
-        <button class="filter-chip" data-cat="Events">Events</button>
-        <button class="filter-chip" data-cat="News">News</button>
+      <div class="posts-toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input id="postsSearch" type="search" placeholder="Search articles…" />
+        </div>
+        <div class="posts-filter-bar" id="filterBar">
+          <button class="filter-chip active" data-cat="">All</button>
+          <button class="filter-chip" data-cat="Announcements">Announcements</button>
+          <button class="filter-chip" data-cat="Insights">Insights</button>
+          <button class="filter-chip" data-cat="Research">Research</button>
+          <button class="filter-chip" data-cat="Events">Events</button>
+          <button class="filter-chip" data-cat="News">News</button>
+        </div>
       </div>
       <div class="posts-grid" id="postsGrid">
         <p class="note" style="grid-column:1/-1">Loading articles…</p>
@@ -137,12 +143,22 @@
 
     let allPosts = [];
     let activeCat = '';
+    let searchQuery = '';
 
     function renderPosts(posts) {
       const grid = document.getElementById('postsGrid');
-      const visible = activeCat ? posts.filter(p => p.category === activeCat) : posts;
+      let visible = activeCat ? posts.filter(p => p.category === activeCat) : posts;
+      if (searchQuery) {
+        const q = searchQuery.toLowerCase();
+        visible = visible.filter(p =>
+          (p.title || '').toLowerCase().includes(q) ||
+          (p.excerpt || '').toLowerCase().includes(q) ||
+          (p.author || '').toLowerCase().includes(q) ||
+          (p.category || '').toLowerCase().includes(q)
+        );
+      }
       if (!visible.length) {
-        grid.innerHTML = `<p class="note" style="grid-column:1/-1;color:var(--text-3)">No articles in this category yet.</p>`;
+        grid.innerHTML = `<p class="note" style="grid-column:1/-1;color:var(--text-3)">${searchQuery ? 'No articles match your search.' : 'No articles in this category yet.'}</p>`;
         return;
       }
       grid.innerHTML = visible.map(p => `
@@ -234,6 +250,12 @@
       } catch { allPosts = []; }
 
       renderPosts(allPosts);
+
+      // Search
+      document.getElementById('postsSearch').addEventListener('input', e => {
+        searchQuery = e.target.value.trim();
+        renderPosts(allPosts);
+      });
 
       // Category filters
       document.getElementById('filterBar').addEventListener('click', e => {
