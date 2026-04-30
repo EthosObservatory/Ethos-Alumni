@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+
+Sitemap: https://ethosobservatory.github.io/Ethos-Alumni/sitemap.xml
