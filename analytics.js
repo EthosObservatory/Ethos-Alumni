@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- sostituisci con il tuo ID
+  var GA_MEASUREMENT_ID = 'G-YE4WLHTBXX';
 
   var loaded = false;
 
