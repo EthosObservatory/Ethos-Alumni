@@ -506,15 +506,20 @@ section { padding: 72px 0; }
 .post-expand-btn {
   background: none;
   border: none;
-  font: inherit;
-  font-size: 0.78rem;
-  color: var(--accent);
+  font-family: var(--font);
+  font-size: 0.8rem;
+  color: var(--text-3);
   cursor: pointer;
   padding: 0;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-2);
   display: none;
+  transition: color .15s;
 }
-.post-expand-btn.visible { display: inline; }
+.post-expand-btn:hover { color: var(--text-2); }
+.post-expand-btn.visible { display: block; }
 
 .post-meta {
   display: flex;
@@ -928,8 +933,13 @@ textarea { resize: vertical; min-height: 100px; line-height: 1.6; }
 .posts-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
   margin-bottom: 36px;
+}
+.posts-toolbar .search-wrap {
+  padding-bottom: 20px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--border);
 }
 
 .posts-filter-bar {
