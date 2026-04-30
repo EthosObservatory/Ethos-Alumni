@@ -1,42 +1,51 @@
 /*!
- * ETHOS Alumni Network — Analytics
- * Loads Plausible only after the user has accepted analytics via the
- * cookie consent banner. If consent was already given in a previous
- * session it loads immediately on DOMContentLoaded.
+ * ETHOS Alumni Network — Analytics (Google Analytics 4)
  *
- * To activate: replace PLAUSIBLE_DOMAIN below with the actual domain,
- * e.g. "ethosobservatory.github.io" or a custom domain if configured.
+ * Completamente gratuito. Per attivare:
+ * 1. Vai su https://analytics.google.com e crea un account (gratis)
+ * 2. Crea una "Property" e ottieni il tuo Measurement ID (formato: G-XXXXXXXXXX)
+ * 3. Sostituisci il valore di GA_MEASUREMENT_ID qui sotto con il tuo ID
+ *
+ * Il tracciamento si attiva SOLO se l'utente accetta dal banner cookie.
  */
 (function () {
   'use strict';
 
-  var PLAUSIBLE_DOMAIN = 'ethosobservatory.github.io';
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- sostituisci con il tuo ID
+
   var loaded = false;
 
-  function loadPlausible() {
-    if (loaded) return;
+  function loadGA4() {
+    if (loaded || GA_MEASUREMENT_ID === 'G-XXXXXXXXXX') return;
     loaded = true;
 
+    /* Carica lo script di Google Analytics */
     var script = document.createElement('script');
-    script.defer = true;
-    script.dataset.domain = PLAUSIBLE_DOMAIN;
-    script.src = 'https://plausible.io/js/script.js';
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
     document.head.appendChild(script);
+
+    /* Inizializza gtag */
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
   }
 
   function handleConsent(e) {
     if (e && e.detail && e.detail.analytics === true) {
-      loadPlausible();
+      loadGA4();
     }
   }
 
-  /* Listen for real-time consent decisions */
+  /* Ascolta la scelta dell'utente dal banner cookie */
   document.addEventListener('ethos:consent', handleConsent);
 
-  /* If consent was already given in a prior session, load immediately */
+  /* Se il consenso era già stato dato in una sessione precedente, carica subito */
   document.addEventListener('DOMContentLoaded', function () {
     if (window.EthosConsent && window.EthosConsent.get() === window.EthosConsent.ACCEPTED) {
-      loadPlausible();
+      loadGA4();
     }
   });
 })();
