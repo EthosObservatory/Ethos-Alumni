@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page Not Found — ETHOS Alumni Network</title>
+  <meta name="description" content="The page you are looking for does not exist." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="logo.js" defer></script>
+  <style>
+    .error-page {
+      min-height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 0;
+      background: radial-gradient(ellipse 900px 500px at 50% -10%, rgba(13,27,110,.06) 0%, transparent 70%);
+    }
+    .error-inner {
+      text-align: center;
+      max-width: 520px;
+    }
+    .error-code {
+      font-size: clamp(6rem, 18vw, 10rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      color: var(--bg-elevated);
+      user-select: none;
+      margin-bottom: 8px;
+    }
+    .error-title {
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .error-desc {
+      font-size: 1rem;
+      color: var(--text-3);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .error-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .error-divider {
+      width: 40px;
+      height: 3px;
+      background: var(--pink);
+      border-radius: 2px;
+      margin: 0 auto 28px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── Header ─────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <img src="ethos-logo.png" alt="ETHOS" class="logo-img">
+        <span class="brand-sub">Observatory on Public Ethics</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#directory">Members</a>
+        <a href="posts.html">Articles</a>
+        <a href="join.html" class="nav-cta">Apply</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── 404 Content ──────────────────────────────────── -->
+  <main class="error-page">
+    <div class="container">
+      <div class="error-inner">
+        <div class="error-code" aria-hidden="true">404</div>
+        <div class="error-divider"></div>
+        <h1 class="error-title">Page not found</h1>
+        <p class="error-desc">
+          The page you are looking for may have been moved, renamed, or does not exist.<br>
+          Let us guide you back.
+        </p>
+        <div class="error-actions">
+          <a class="btn btn-primary btn-lg" href="index.html">Go to Home</a>
+          <a class="btn btn-outline btn-lg" href="posts.html">Browse Articles</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ─── Footer ───────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="ethos-logo.png" alt="ETHOS" class="logo-img logo-img-sm" style="margin-bottom:10px">
+          <p class="footer-desc">Observatory on Public Ethics<br>LUISS Guido Carli University – Rome, Italy</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#directory">Members</a></li>
+            <li><a href="posts.html">Articles</a></li>
+            <li><a href="join.html">Applications</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacts</h4>
+          <ul>
+            <li><a href="mailto:ethos.observatory@outlook.it">ethos.observatory@outlook.it</a></li>
+            <li><a href="mailto:ethos@luiss.it">ethos@luiss.it</a></li>
+            <li><a href="privacy.html">Privacy & GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 ETHOS Alumni Network</span>
+        <span>LUISS Guido Carli · Rome</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('navToggle')?.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
