@@ -162,19 +162,37 @@
         return;
       }
       grid.innerHTML = visible.map(p => `
-        <article class="post-card fade-in" onclick="openPost('${p.id}')">
+        <article class="post-card fade-in">
           <div class="post-category">${p.category || 'Article'}</div>
-          <h3>${p.title}</h3>
-          <p class="post-excerpt">${p.excerpt || ''}</p>
+          <h3 style="cursor:pointer" onclick="openPost('${p.id}')">${p.title}</h3>
+          <p class="post-excerpt" id="exc-${p.id}">${p.excerpt || ''}</p>
+          <button class="post-expand-btn" id="btn-${p.id}" onclick="toggleExcerpt('${p.id}')">Show more</button>
           <div class="post-meta">
             <div class="post-author-line">
               <div class="post-avatar-mini">${initials(p.author || 'ET')}</div>
               <span>${p.author || 'ETHOS'}</span>
             </div>
-            <span>${formatDate(p.date)}</span>
+            <span style="cursor:pointer" onclick="openPost('${p.id}')">${formatDate(p.date)}</span>
           </div>
         </article>
       `).join('');
+
+      // Show expand button only on cards where text is actually clamped
+      requestAnimationFrame(() => {
+        visible.forEach(p => {
+          const el = document.getElementById('exc-' + p.id);
+          const btn = document.getElementById('btn-' + p.id);
+          if (el && btn && el.scrollHeight > el.clientHeight + 2) btn.classList.add('visible');
+        });
+      });
+    }
+
+    function toggleExcerpt(id) {
+      const el  = document.getElementById('exc-' + id);
+      const btn = document.getElementById('btn-' + id);
+      if (!el || !btn) return;
+      const expanded = el.classList.toggle('expanded');
+      btn.textContent = expanded ? 'Show less' : 'Show more';
     }
 
     async function renderPDF(url, container) {
