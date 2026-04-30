@@ -195,10 +195,12 @@
       <div class="footer-bottom">
         <span>© 2025 ETHOS Alumni Network</span>
         <span>LUISS Guido Carli · Rome</span>
+        <button class="footer-cookie-btn" onclick="EthosConsent.show()" aria-label="Cookie settings">Cookie settings</button>
       </div>
     </div>
   </footer>
 
+  <script src="cookie-consent.js"></script>
   <script>
     document.getElementById('navToggle')?.addEventListener('click', () => {
       document.getElementById('navLinks').classList.toggle('open');
